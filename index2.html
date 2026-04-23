@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Shivanshu Cafe – Belaganj, Gaya | Digital Center</title>
+<meta name="description" content="Shivanshu Cyber Cafe – Belaganj, Gaya. Printing, Aadhaar, PAN Card, Scholarship, Railway Ticket, Job Alerts aur bahut kuch."/>
+<meta name="sc-api-base" content=""/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ─── RESET ─── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#07091a; --bg1:#0c1028; --bg2:#101640;
+  --glass:rgba(255,255,255,.045); --glass2:rgba(255,255,255,.08);
+  --bd:rgba(255,255,255,.08); --bd-o:rgba(247,148,29,.35);
+  --or:#f7941d; --or2:#f06b00;
+  --org:linear-gradient(135deg,#f7941d,#f06b00);
+  --blue:#4facfe; --grn:#00e676; --red:#ff5252; --ylw:#ffd700;
+  --txt:#e8eaf0; --mt:#5e6a84; --mt2:#8892a4;
+  --r:14px; --rl:22px;
+  --sh:0 8px 40px rgba(0,0,0,.5);
+  --glow:0 0 40px rgba(247,148,29,.18);
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4{font-family:'Syne',sans-serif}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:'Plus Jakarta Sans',sans-serif}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--or);border-radius:3px}
+
+/* ─── TICKER ─── */
+.ticker{background:linear-gradient(90deg,#0a1440,#0e1d5a,#0a1440);border-bottom:1px solid var(--bd);padding:9px 0;overflow:hidden;position:relative}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;height:100%;width:80px;z-index:2}
+.ticker::before{left:0;background:linear-gradient(90deg,#0a1440,transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,#0a1440,transparent)}
+.t-in{display:flex;align-items:center}
+.t-lbl{background:var(--org);color:#fff;font-weight:800;font-size:11px;padding:4px 20px 4px 14px;white-space:nowrap;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%);margin-right:18px;flex-shrink:0;z-index:3;position:relative;letter-spacing:.5px}
+.t-wrap{overflow:hidden;flex:1}
+.t-track{display:flex;white-space:nowrap;animation:tickmove 55s linear infinite}
+.t-track:hover{animation-play-state:paused}
+.t-track span{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.82);margin-right:56px;display:inline-flex;align-items:center;gap:7px}
+.t-track span::before{content:'';width:6px;height:6px;background:var(--or);border-radius:50%;flex-shrink:0;box-shadow:0 0 8px var(--or);animation:blink 2s ease infinite}
+@keyframes tickmove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ─── NAV ─── */
+nav{position:sticky;top:0;z-index:900;background:rgba(7,9,26,.88);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--bd)}
+.nv{max-width:1240px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;height:66px;gap:14px}
+.logo{display:flex;align-items:center;gap:11px;cursor:pointer;flex-shrink:0}
+.logo-mk{width:42px;height:42px;border-radius:11px;background:var(--org);display:flex;align-items:center;justify-content:center;font-size:21px;box-shadow:0 4px 18px rgba(247,148,29,.38);transition:transform .3s}
+.logo:hover .logo-mk{transform:rotate(-8deg) scale(1.06)}
+.logo .l1{font-family:'Syne',sans-serif;font-size:16.5px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1.1}
+.logo .l2{font-size:10px;color:var(--or);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.nl{display:flex;gap:1px;list-style:none}
+.nl a{display:block;padding:7px 12px;border-radius:9px;font-size:13px;font-weight:500;color:var(--mt2);transition:all .2s;cursor:pointer;white-space:nowrap}
+.nl a:hover{color:#fff;background:var(--glass2)}
+.nl a.act{color:var(--or);background:rgba(247,148,29,.1)}
+.nv-r{display:flex;gap:7px;align-items:center;flex-shrink:0}
+.nb{padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;border:none;transition:all .22s;white-space:nowrap;cursor:pointer}
+.nb-g{background:var(--glass2);color:var(--txt);border:1px solid var(--bd)}
+.nb-g:hover{background:rgba(255,255,255,.12);color:#fff}
+.nb-o{background:var(--org);color:#fff;box-shadow:0 4px 18px rgba(247,148,29,.32)}
+.nb-o:hover{box-shadow:0 4px 28px rgba(247,148,29,.52);transform:translateY(-1px)}
+.nb-grn{background:linear-gradient(135deg,#00c853,#00e676);color:#000;font-weight:800}
+.nb-grn:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(0,230,118,.28)}
+.nb-adm{background:linear-gradient(135deg,#4facfe,#00f2fe);color:#000;font-weight:800;font-size:12px;padding:8px 13px}
+.nb-adm:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(79,172,254,.28)}
+.hbg{display:none;background:var(--glass2);border:1px solid var(--bd);color:#fff;padding:8px 10px;border-radius:8px;font-size:20px;cursor:pointer}
+.mob{display:none;flex-direction:column;background:rgba(7,9,26,.97);backdrop-filter:blur(22px);border-bottom:1px solid var(--bd);padding:10px 20px}
+.mob a{padding:10px 6px;font-weight:500;color:var(--mt2);border-bottom:1px solid var(--bd);cursor:pointer;display:block;font-size:14px;transition:color .2s}
+.mob a:hover{color:var(--or)}
+.mob.open{display:flex}
+
+/* ─── HERO ─── */
+.hero{min-height:90vh;display:flex;align-items:center;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 18% 52%,rgba(247,148,29,.08) 0%,transparent 58%),
+             radial-gradient(ellipse at 82% 20%,rgba(79,172,254,.07) 0%,transparent 52%),var(--bg)}
+.blob{position:absolute;border-radius:50%;filter:blur(85px);opacity:.22;pointer-events:none;animation:flt 9s ease-in-out infinite}
+.b1{width:520px;height:520px;background:radial-gradient(#f7941d,#f06b00);top:-120px;left:-120px;animation-delay:0s}
+.b2{width:420px;height:420px;background:radial-gradient(#4facfe,#00f2fe);top:5%;right:-90px;animation-delay:-3.5s}
+.b3{width:280px;height:280px;background:radial-gradient(#f7941d,transparent);bottom:-40px;left:38%;animation-delay:-7s}
+@keyframes flt{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.04)}}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:60px 60px}
+.hc{max-width:1240px;margin:0 auto;padding:100px 24px 80px;display:grid;grid-template-columns:1fr 460px;gap:56px;align-items:center;position:relative;z-index:1}
+.h-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(247,148,29,.1);border:1px solid rgba(247,148,29,.25);color:var(--or);padding:7px 16px;border-radius:100px;font-size:12.5px;font-weight:600;margin-bottom:20px;animation:fu .6s ease both}
+.h-pill em{width:7px;height:7px;background:var(--or);border-radius:50%;box-shadow:0 0 8px var(--or);animation:blink 1.5s ease infinite}
+.h-ttl{font-size:clamp(42px,6vw,70px);font-weight:800;color:#fff;line-height:1.0;letter-spacing:-2px;margin-bottom:14px;animation:fu .6s .08s ease both}
+.gr-txt{background:linear-gradient(135deg,#f7941d,#ffd700,#f7941d);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shine 3s linear infinite}
+@keyframes shine{0%{background-position:0%}100%{background-position:200%}}
+.h-sub{font-size:15.5px;color:var(--mt2);line-height:1.78;max-width:500px;margin-bottom:34px;animation:fu .6s .16s ease both}
+.h-sub strong{color:var(--or)}
+.hbtns{display:flex;gap:11px;flex-wrap:wrap;animation:fu .6s .24s ease both}
+.hb1{background:var(--org);color:#fff;padding:13px 28px;border-radius:12px;font-weight:700;font-size:14.5px;border:none;box-shadow:0 6px 28px rgba(247,148,29,.35);transition:all .28s;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.hb1:hover{transform:translateY(-3px);box-shadow:0 10px 38px rgba(247,148,29,.5)}
+.hb2{background:var(--glass2);color:#fff;border:1px solid var(--bd);padding:13px 28px;border-radius:12px;font-weight:700;font-size:14.5px;cursor:pointer;transition:all .28s;display:inline-flex;align-items:center;gap:7px}
+.hb2:hover{background:rgba(255,255,255,.12);transform:translateY(-3px)}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.h-card{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:26px;backdrop-filter:blur(18px);animation:fu .6s .12s ease both}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:14px}
+.stat-c{background:var(--glass);border:1px solid var(--bd);border-radius:13px;padding:16px;text-align:center;transition:all .3s}
+.stat-c:hover{border-color:var(--bd-o)}
+.sn{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sl{font-size:11px;color:var(--mt);margin-top:3px;font-weight:500}
+.live-b{display:flex;align-items:center;gap:9px;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:11px;padding:12px 15px;margin-bottom:13px}
+.live-dot{width:9px;height:9px;background:var(--grn);border-radius:50%;box-shadow:0 0 8px var(--grn);animation:blink 1.5s ease infinite;flex-shrink:0}
+.live-t{font-size:13px;font-weight:600;color:rgba(255,255,255,.85)}
+.live-t span{color:var(--grn)}
+.qa-g{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.qa{background:var(--glass);border:1px solid var(--bd);border-radius:10px;padding:11px;text-align:center;font-size:12px;font-weight:600;color:var(--mt2);cursor:pointer;transition:all .22s}
+.qa:hover{background:rgba(247,148,29,.1);border-color:var(--bd-o);color:var(--or)}
+.qa .qi{font-size:20px;display:block;margin-bottom:4px}
+
+/* ─── SECTIONS ─── */
+section{padding:84px 24px}
+.si{max-width:1240px;margin:0 auto}
+.shd{text-align:center;margin-bottom:52px}
+.s-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(247,148,29,.08);border:1px solid rgba(247,148,29,.18);color:var(--or);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 13px;border-radius:100px;margin-bottom:12px}
+.s-ttl{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:9px;line-height:1.1}
+.acc{background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s-desc{color:var(--mt2);font-size:14.5px;max-width:500px;margin:0 auto;line-height:1.78}
+
+/* ─── WHY ─── */
+.why-bg{background:var(--bg1)}
+.why-g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.wc{background:var(--glass);border:1px solid var(--bd);border-radius:var(--rl);padding:30px 26px;transition:all .38s;position:relative;overflow:hidden}
+.wc::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(247,148,29,.06),transparent);opacity:0;transition:opacity .3s}
+.wc:hover{border-color:var(--bd-o);transform:translateY(-6px);box-shadow:0 22px 56px rgba(0,0,0,.4),var(--glow)}
+.wc:hover::after{opacity:1}
+.wic{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;transition:transform .3s}
+.wc:hover .wic{transform:scale(1.1) rotate(-6deg)}
+.wc h3{font-size:16.5px;color:#fff;margin-bottom:7px}
+.wc p{color:var(--mt2);font-size:13.5px;line-height:1.7}
+
+/* ─── SERVICES ─── */
+.srv-bg{background:var(--bg)}
+.srv-g{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.sc2{background:var(--glass);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;transition:all .3s}
+.sc2:hover{border-color:var(--bd-o);transform:translateY(-5px);box-shadow:0 16px 44px rgba(0,0,0,.4),var(--glow)}
+.si2{height:100px;display:flex;align-items:center;justify-content:center;font-size:38px}
+.sb2{padding:13px 15px}
+.sb2 h3{font-size:13.5px;color:#fff;font-weight:700;margin-bottom:3px}
+.sb2 p{font-size:11.5px;color:var(--mt);line-height:1.5}
+
+/* ─── JOBS ─── */
+.jobs-bg{background:var(--bg1)}
+.jab{background:linear-gradient(135deg,rgba(247,148,29,.13),rgba(247,148,29,.04));border:1px solid rgba(247,148,29,.22);border-radius:var(--rl);padding:26px 30px;margin-bottom:34px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;position:relative;overflow:hidden}
+.jab::before{content:'🔔';position:absolute;right:36px;top:50%;transform:translateY(-50%);font-size:76px;opacity:.06;pointer-events:none}
+.jab h3{color:#fff;font-size:19px;font-weight:800;margin-bottom:3px}
+.jab p{color:var(--mt2);font-size:13px}
+.sf{display:flex;gap:7px;flex-wrap:wrap}
+.sf input{background:rgba(255,255,255,.06);border:1px solid var(--bd);color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;width:200px;outline:none;transition:border .2s}
+.sf input:focus{border-color:rgba(247,148,29,.45)}
+.sf input::placeholder{color:var(--mt)}
+.sf button{background:var(--org);color:#fff;padding:10px 20px;border-radius:10px;border:none;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 4px 18px rgba(247,148,29,.28);transition:all .2s}
+.sf button:hover{transform:translateY(-1px);box-shadow:0 6px 26px rgba(247,148,29,.42)}
+.jfil{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:26px;justify-content:center}
+.fb{background:var(--glass);border:1px solid var(--bd);color:var(--mt2);padding:8px 17px;border-radius:100px;font-weight:600;font-size:12.5px;cursor:pointer;transition:all .24s}
+.fb:hover{border-color:rgba(247,148,29,.3);color:#fff}
+.fb.act{background:var(--org);color:#fff;border-color:transparent;box-shadow:0 4px 18px rgba(247,148,29,.32)}
+.jg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.jcard{background:var(--glass);border:1px solid var(--bd);border-radius:var(--rl);padding:19px;transition:all .32s;position:relative;overflow:hidden}
+.jcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--org);border-radius:3px 0 0 3px}
+.jcard:hover{border-color:var(--bd-o);transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.42),var(--glow)}
+.jbadge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:9px;text-transform:uppercase;letter-spacing:.4px}
+.bg-g{background:rgba(46,125,50,.22);color:#66bb6a;border:1px solid rgba(46,125,50,.3)}
+.bg-r{background:rgba(13,71,161,.22);color:#64b5f6;border:1px solid rgba(13,71,161,.3)}
+.bg-b{background:rgba(106,27,154,.22);color:#ce93d8;border:1px solid rgba(106,27,154,.3)}
+.bg-d{background:rgba(136,14,79,.22);color:#f48fb1;border:1px solid rgba(136,14,79,.3)}
+.bg-p{background:rgba(230,81,0,.22);color:#ffb74d;border:1px solid rgba(230,81,0,.3)}
+.jt2{font-size:14px;font-weight:700;color:#fff;margin-bottom:5px;line-height:1.35}
+.jorg{font-size:11.5px;color:var(--mt2);margin-bottom:8px}
+.jmeta{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.jtg{font-size:10.5px;background:rgba(255,255,255,.05);color:var(--mt2);padding:3px 8px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.jdl{font-size:11px;color:#ff8a65;font-weight:600;margin-bottom:12px}
+.jacts{display:flex;gap:7px}
+.btn-ap{background:var(--org);color:#fff;padding:8px 17px;border-radius:8px;font-size:12.5px;font-weight:700;border:none;cursor:pointer;box-shadow:0 3px 12px rgba(247,148,29,.24);transition:all .2s}
+.btn-ap:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(247,148,29,.4)}
+.btn-sv{background:var(--glass);color:var(--mt2);padding:8px 12px;border-radius:8px;font-size:12.5px;font-weight:600;border:1px solid var(--bd);cursor:pointer;transition:all .2s}
+.btn-sv:hover{border-color:var(--bd-o);color:var(--or)}
+
+/* ─── QUICK LINKS ─── */
+.lk-bg{background:var(--bg)}
+.lk-g{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.lkc{background:var(--glass);border:1px solid var(--bd);border-radius:var(--r);padding:18px 15px;text-align:center;transition:all .28s;display:block}
+.lkc:hover{border-color:var(--bd-o);transform:translateY(-4px);box-shadow:0 14px 38px rgba(0,0,0,.3),var(--glow);background:rgba(247,148,29,.06)}
+.lkc .li{font-size:26px;display:block;margin-bottom:8px}
+.lkc h4{font-size:12.5px;color:#fff;font-weight:700;margin-bottom:2px}
+.lkc p{font-size:11px;color:var(--mt)}
+
+/* ─── PRICING ─── */
+.pr-bg{background:var(--bg1)}
+.pr-g{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.prc{background:var(--glass);border:1px solid var(--bd);border-radius:var(--rl);padding:30px 24px;text-align:center;transition:all .34s;position:relative}
+.prc.pop{background:linear-gradient(160deg,rgba(247,148,29,.1),rgba(247,148,29,.03));border-color:rgba(247,148,29,.32);box-shadow:0 0 0 1px rgba(247,148,29,.14),var(--glow);transform:scale(1.04)}
+.prc:hover{border-color:var(--bd-o);transform:translateY(-6px)}
+.prc.pop:hover{transform:scale(1.04) translateY(-6px)}
+.pop-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--org);color:#fff;font-size:11px;font-weight:800;padding:4px 16px;border-radius:100px;white-space:nowrap;box-shadow:0 4px 14px rgba(247,148,29,.38)}
+.pr-ico{font-size:34px;margin-bottom:10px}
+.pr-nm{font-size:17px;color:#fff;font-weight:800;margin-bottom:5px}
+.pr-am{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pr-pe{font-size:12.5px;color:var(--mt);display:block;margin-top:1px}
+.pr-ul{list-style:none;margin:20px 0 24px;text-align:left}
+.pr-ul li{padding:8px 0;font-size:13.5px;color:var(--mt2);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:7px}
+.pr-ul li::before{content:'✓';background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-size:14px;flex-shrink:0}
+.pr-btn{width:100%;background:var(--glass2);color:#fff;padding:12px;border-radius:9px;border:1px solid var(--bd);font-size:14px;font-weight:700;cursor:pointer;transition:all .22s}
+.pr-btn:hover{background:rgba(255,255,255,.1)}
+.prc.pop .pr-btn{background:var(--org);border-color:transparent;box-shadow:0 4px 18px rgba(247,148,29,.32)}
+.prc.pop .pr-btn:hover{box-shadow:0 6px 26px rgba(247,148,29,.5);transform:translateY(-1px)}
+
+/* ─── CONTACT ─── */
+.ct-bg{background:var(--bg)}
+.ct-g{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
+.ct-info h3{font-size:22px;color:#fff;font-weight:800;margin-bottom:8px}
+.ct-info p{color:var(--mt2);font-size:14px;margin-bottom:26px;line-height:1.78}
+.iitem{display:flex;align-items:flex-start;gap:13px;margin-bottom:17px}
+.iic{width:41px;height:41px;background:rgba(247,148,29,.1);border:1px solid rgba(247,148,29,.18);color:var(--or);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.itx strong{display:block;font-size:13px;color:#fff;font-weight:700;margin-bottom:1px}
+.itx span{font-size:13px;color:var(--mt2)}
+.srow{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}
+.sbtn{width:37px;height:37px;background:var(--glass);border:1px solid var(--bd);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;transition:all .2s;text-decoration:none}
+.sbtn:hover{background:rgba(247,148,29,.15);border-color:var(--bd-o);transform:translateY(-2px)}
+.ctf{background:var(--glass);border:1px solid var(--bd);border-radius:var(--rl);padding:34px;backdrop-filter:blur(10px)}
+.ctf h3{font-size:19px;color:#fff;font-weight:800;margin-bottom:20px}
+.fg{margin-bottom:13px}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--mt2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg textarea,.fg select{width:100%;padding:11px 15px;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:9px;font-size:13.5px;color:#fff;outline:none;transition:all .2s}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--mt)}
+.fg select option{background:#1a2040;color:#fff}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:rgba(247,148,29,.4);background:rgba(247,148,29,.04)}
+.fg textarea{min-height:95px;resize:vertical}
+.ctf-btn{width:100%;background:var(--org);color:#fff;padding:13px;border-radius:9px;border:none;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 22px rgba(247,148,29,.28);transition:all .24s;margin-top:3px}
+.ctf-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(247,148,29,.48)}
+
+/* ─── CTA ─── */
+.cta{background:linear-gradient(135deg,rgba(247,148,29,.14),rgba(247,148,29,.04));border-top:1px solid rgba(247,148,29,.14);border-bottom:1px solid rgba(247,148,29,.1);padding:70px 24px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(247,148,29,.11),transparent 70%)}
+.cta h2{font-size:clamp(26px,4vw,42px);color:#fff;font-weight:800;margin-bottom:9px;letter-spacing:-1px;position:relative}
+.cta p{color:var(--mt2);font-size:15.5px;margin-bottom:26px;position:relative}
+.cta-btns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;position:relative}
+.cta-p{background:var(--org);color:#fff;padding:13px 30px;border-radius:11px;font-weight:700;font-size:14px;border:none;cursor:pointer;box-shadow:0 6px 26px rgba(247,148,29,.32);transition:all .24s}
+.cta-p:hover{transform:translateY(-2px);box-shadow:0 10px 38px rgba(247,148,29,.5)}
+.cta-s{background:var(--glass2);color:#fff;border:1px solid var(--bd);padding:13px 30px;border-radius:11px;font-weight:700;font-size:14px;cursor:pointer;transition:all .24s}
+.cta-s:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--bg1);border-top:1px solid var(--bd)}
+.ft{max-width:1240px;margin:0 auto;padding:54px 24px 38px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:38px}
+.ft p{font-size:13px;color:var(--mt);line-height:1.78;margin:11px 0 17px}
+.ft-s{display:flex;gap:7px}
+.ft-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:13px;letter-spacing:.2px}
+.ft-col ul{list-style:none}
+.ft-col ul li{margin-bottom:8px}
+.ft-col ul li a{color:var(--mt);font-size:13px;transition:color .2s;cursor:pointer}
+.ft-col ul li a:hover{color:var(--or)}
+.ft-bot{border-top:1px solid var(--bd);padding:17px 24px;max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--mt);flex-wrap:wrap;gap:8px}
+.ft-bot .hl{color:var(--or)}
+
+/* ─── MODAL ─── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:linear-gradient(160deg,#0f1830,#0c1228);border:1px solid var(--bd);border-radius:var(--rl);padding:34px;width:100%;max-width:430px;position:relative;max-height:92vh;overflow-y:auto;box-shadow:0 40px 100px rgba(0,0,0,.72)}
+.mc{position:absolute;top:13px;right:14px;background:var(--glass2);border:1px solid var(--bd);color:var(--mt2);width:31px;height:31px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;transition:all .2s}
+.mc:hover{background:rgba(255,82,82,.1);border-color:rgba(255,82,82,.3);color:var(--red)}
+.modal h3{font-size:21px;color:#fff;margin-bottom:18px;font-weight:800}
+.atabs{display:flex;margin-bottom:22px;background:rgba(255,255,255,.04);border-radius:10px;padding:4px}
+.atab{flex:1;padding:9px;text-align:center;font-weight:700;font-size:13.5px;border:none;border-radius:7px;color:var(--mt2);background:transparent;cursor:pointer;transition:all .24s}
+.atab.act{background:var(--org);color:#fff;box-shadow:0 3px 11px rgba(247,148,29,.28)}
+.mfg{margin-bottom:12px}
+.mfg label{display:block;font-size:11px;font-weight:700;color:var(--mt2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.mfg input,.mfg select{width:100%;padding:10px 13px;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:9px;font-size:13.5px;color:#fff;outline:none;transition:all .2s}
+.mfg input:focus{border-color:rgba(247,148,29,.4);background:rgba(247,148,29,.04)}
+.mfg input::placeholder{color:var(--mt)}
+.mfg select option{background:#1a2040}
+.m-btn{width:100%;background:var(--org);color:#fff;padding:12px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 18px rgba(247,148,29,.28);transition:all .22s;margin-top:4px}
+.m-btn:hover{box-shadow:0 6px 26px rgba(247,148,29,.44);transform:translateY(-1px)}
+.emsg{font-size:12.5px;margin-bottom:11px;padding:9px 12px;border-radius:8px}
+.emsg.err{color:#ff8a80;background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.2)}
+.emsg.ok{color:#69f0ae;background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.2)}
+
+/* ─── ADMIN ─── */
+.adm-wrap{max-width:1180px;margin:0 auto;padding:30px 20px}
+.adm-hdr{background:linear-gradient(135deg,rgba(247,148,29,.12),rgba(247,148,29,.03));border:1px solid rgba(247,148,29,.2);border-radius:var(--rl);padding:24px 30px;margin-bottom:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.adm-hdr h2{color:#fff;font-size:21px;margin-bottom:3px}
+.adm-hdr p{color:var(--mt2);font-size:13px}
+.adm-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.atab2{padding:9px 20px;border-radius:10px;font-size:13px;font-weight:700;border:1px solid var(--bd);background:var(--glass);color:var(--mt2);cursor:pointer;transition:all .2s}
+.atab2.act{background:var(--org);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(247,148,29,.28)}
+.adm-sec{background:var(--glass);border:1px solid var(--bd);border-radius:var(--rl);padding:22px;margin-bottom:18px}
+.adm-sec h3{font-size:16px;color:#fff;font-weight:800;margin-bottom:17px;display:flex;align-items:center;gap:7px}
+.afg{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px}
+.af{display:flex;flex-direction:column;gap:4px}
+.af.full{grid-column:1/-1}
+.af label{font-size:11px;font-weight:700;color:var(--mt2);text-transform:uppercase;letter-spacing:.5px}
+.af input,.af select,.af textarea{padding:9px 12px;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:8px;font-size:13px;color:#fff;outline:none;transition:border .2s}
+.af select option{background:#1a2040}
+.af input:focus,.af select:focus,.af textarea:focus{border-color:rgba(247,148,29,.4)}
+.abtn{background:var(--org);color:#fff;padding:10px 22px;border-radius:8px;border:none;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 4px 14px rgba(247,148,29,.22);transition:all .2s}
+.abtn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(247,148,29,.36)}
+.abtn.del{background:rgba(255,82,82,.1);color:#ff8a80;border:1px solid rgba(255,82,82,.2);box-shadow:none;padding:6px 13px;font-size:11.5px}
+.abtn.del:hover{background:rgba(255,82,82,.2)}
+.abtn.sm{padding:7px 14px;font-size:12px}
+.atbl{width:100%;border-collapse:collapse}
+.atbl th{background:rgba(255,255,255,.04);padding:10px 12px;text-align:left;font-size:11px;font-weight:700;color:var(--mt2);border-bottom:1px solid var(--bd);text-transform:uppercase;letter-spacing:.5px}
+.atbl td{padding:10px 12px;font-size:12.5px;color:var(--mt2);border-bottom:1px solid var(--bd);vertical-align:middle}
+.atbl tr:hover td{background:rgba(255,255,255,.02);color:#fff}
+.nitem{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.03);padding:10px 13px;border-radius:9px;border:1px solid var(--bd);margin-bottom:7px;transition:border .2s}
+.nitem:hover{border-color:rgba(247,148,29,.2)}
+.nitem .nt{font-size:13px;color:var(--mt2);flex:1;line-height:1.5}
+.tpill{font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:100px;flex-shrink:0;letter-spacing:.4px;text-transform:uppercase}
+.tp-n{background:rgba(13,71,161,.25);color:#64b5f6;border:1px solid rgba(13,71,161,.28)}
+.tp-u{background:rgba(136,14,79,.25);color:#f48fb1;border:1px solid rgba(136,14,79,.28)}
+.tp-i{background:rgba(46,125,50,.25);color:#66bb6a;border:1px solid rgba(46,125,50,.28)}
+.anrow{display:flex;gap:7px;margin-bottom:13px;flex-wrap:wrap}
+.anrow input{flex:1;min-width:180px;padding:9px 13px;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:8px;font-size:13px;color:#fff;outline:none}
+.anrow input:focus{border-color:rgba(247,148,29,.4)}
+.anrow select{padding:9px 12px;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:8px;font-size:13px;color:#fff;outline:none}
+.anrow select option{background:#1a2040}
+.st-cs{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:22px}
+.stc{background:linear-gradient(135deg,rgba(247,148,29,.12),rgba(247,148,29,.03));border:1px solid rgba(247,148,29,.18);border-radius:13px;padding:18px;text-align:center}
+.stc-n{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stc-l{font-size:10.5px;color:var(--mt);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+
+/* ─── DASHBOARD ─── */
+.dsh-wrap{max-width:1080px;margin:0 auto;padding:30px 20px}
+.dsh-hdr{background:linear-gradient(135deg,rgba(79,172,254,.1),rgba(79,172,254,.02));border:1px solid rgba(79,172,254,.18);border-radius:var(--rl);padding:22px 27px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:11px}
+.dsh-hdr h2{color:#fff;font-size:19px;font-weight:800;margin-bottom:2px}
+.dsh-hdr p{color:var(--mt2);font-size:13px}
+.dsh-tabs{display:flex;gap:5px;margin-bottom:22px;flex-wrap:wrap}
+.dtab{padding:8px 18px;border-radius:9px;font-size:13px;font-weight:700;border:1px solid var(--bd);background:var(--glass);color:var(--mt2);cursor:pointer;transition:all .2s}
+.dtab.act{background:linear-gradient(135deg,#4facfe,#00f2fe);color:#000;border-color:transparent}
+.dsh-g{display:grid;grid-template-columns:250px 1fr;gap:18px}
+.dprof{background:var(--glass);border:1px solid var(--bd);border-radius:var(--rl);padding:22px;text-align:center}
+.dpav{width:70px;height:70px;background:var(--org);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:27px;color:#fff;font-weight:800;margin:0 auto 12px;font-family:'Syne',sans-serif;box-shadow:0 8px 26px rgba(247,148,29,.33)}
+.dpnm{font-size:16px;color:#fff;font-weight:800;margin-bottom:3px}
+.dpem{font-size:11.5px;color:var(--mt);margin-bottom:18px}
+.ddet{display:flex;flex-direction:column;gap:7px}
+.ddi{display:flex;justify-content:space-between;font-size:12.5px;padding:7px 0;border-bottom:1px solid var(--bd)}
+.ddi span:first-child{color:var(--mt)}
+.ddi span:last-child{color:#fff;font-weight:600}
+.dsh-main{display:flex;flex-direction:column;gap:15px}
+.ds{background:var(--glass);border:1px solid var(--bd);border-radius:var(--rl);padding:19px}
+.ds h3{font-size:15px;color:#fff;font-weight:800;margin-bottom:13px}
+.sjitem{display:flex;align-items:center;justify-content:space-between;padding:9px 11px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:6px;border:1px solid var(--bd);transition:border .2s}
+.sjitem:hover{border-color:var(--bd-o)}
+.sjt{font-size:12.5px;font-weight:700;color:#fff}
+.sjo{font-size:11px;color:var(--mt);margin-top:2px}
+.empty{text-align:center;padding:26px;color:var(--mt)}
+.empty .ei{font-size:34px;margin-bottom:7px}
+
+/* ─── AGE CALCULATOR ─── */
+.age-calc{background:var(--glass);border:1px solid var(--bd);border-radius:var(--rl);padding:26px}
+.age-calc h3{font-size:16px;color:#fff;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.age-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.age-inp label{display:block;font-size:11px;font-weight:700;color:var(--mt2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.age-inp input{width:100%;padding:10px 13px;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:8px;font-size:14px;color:#fff;outline:none;transition:border .2s;cursor:pointer;color-scheme:dark}
+.age-inp input:focus{border-color:rgba(247,148,29,.45)}
+.age-btn{background:var(--org);color:#fff;padding:11px 26px;border-radius:9px;border:none;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 16px rgba(247,148,29,.28);transition:all .22s;width:100%;margin-bottom:14px}
+.age-btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(247,148,29,.44)}
+.age-result{display:none;background:linear-gradient(135deg,rgba(247,148,29,.1),rgba(247,148,29,.03));border:1px solid rgba(247,148,29,.22);border-radius:12px;padding:20px}
+.age-result.show{display:block}
+.age-result h4{font-size:13px;color:var(--or);font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.age-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.age-box{background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center}
+.age-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.age-lbl{font-size:11px;color:var(--mt2);margin-top:3px;font-weight:600}
+.age-detail{font-size:13px;color:var(--mt2);line-height:1.7;padding-top:12px;border-top:1px solid var(--bd)}
+.age-detail span{color:#fff;font-weight:600}
+.age-err{display:none;background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.2);border-radius:9px;padding:11px 14px;font-size:13px;color:#ff8a80;margin-bottom:12px}
+.age-err.show{display:block}
+
+/* ─── TOAST ─── */
+.toast-el{position:fixed;bottom:22px;right:22px;padding:12px 20px;border-radius:11px;font-weight:600;font-size:13.5px;z-index:9999;transform:translateY(80px);opacity:0;transition:all .35s cubic-bezier(.175,.885,.32,1.275);box-shadow:0 8px 30px rgba(0,0,0,.4);max-width:340px;display:flex;align-items:center;gap:8px;pointer-events:none}
+.toast-el.ok{background:linear-gradient(135deg,#1a3a1a,#0f2a0f);border:1px solid rgba(0,230,118,.22);color:#69f0ae}
+.toast-el.er{background:linear-gradient(135deg,#3a1a1a,#2a0f0f);border:1px solid rgba(255,82,82,.22);color:#ff8a80}
+.toast-el.inf{background:linear-gradient(135deg,#1a2a3a,#0f1f2a);border:1px solid rgba(79,172,254,.22);color:#64b5f6}
+.toast-el.show{transform:translateY(0);opacity:1}
+
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .58s ease,transform .58s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.09s}.rv.d2{transition-delay:.18s}.rv.d3{transition-delay:.27s}
+
+/* ─── STATUS BADGE ─── */
+.status-on{display:inline-flex;align-items:center;gap:5px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.2);color:var(--grn);font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px}
+.status-dot{width:6px;height:6px;background:var(--grn);border-radius:50%;box-shadow:0 0 6px var(--grn)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1080px){
+  .srv-g{grid-template-columns:repeat(3,1fr)}
+  .lk-g{grid-template-columns:repeat(3,1fr)}
+  .ft{grid-template-columns:1fr 1fr}
+  .st-cs{grid-template-columns:repeat(2,1fr)}
+  .hc{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nl{display:none}.hbg{display:flex}
+  .why-g,.jg,.pr-g,.ct-g,.dsh-g{grid-template-columns:1fr}
+  .srv-g,.age-grid,.age-boxes{grid-template-columns:1fr 1fr}
+  .lk-g{grid-template-columns:repeat(2,1fr)}
+  .ft{grid-template-columns:1fr}
+  .ft-bot,.adm-hdr,.dsh-hdr,.jab{flex-direction:column;text-align:center}
+  .prc.pop{transform:scale(1)}.prc.pop:hover{transform:translateY(-6px)}
+  .st-cs{grid-template-columns:repeat(2,1fr)}
+  .adm-wrap,.dsh-wrap{padding:14px 10px}
+  .afg{grid-template-columns:1fr}
+  .hc{padding:70px 18px 50px}
+  .h-card{display:none}
+  .age-boxes{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:480px){
+  .srv-g,.age-grid{grid-template-columns:1fr}
+  .age-boxes{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div class="toast-el" id="TT"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   DATA LAYER  — localStorage persistence
+═══════════════════════════════════════════════════ */
+const LS = {
+  prefix:'sc_',
+  fallbackPrefix:'__SC_WINDOW_STORE__:',
+  localOK:null,
+  canUseLocal(){
+    if(this.localOK!==null) return this.localOK;
+    try{
+      const probe=this.prefix+'probe';
+      localStorage.setItem(probe,'1');
+      localStorage.removeItem(probe);
+      this.localOK=true;
+    }catch{
+      this.localOK=false;
+    }
+    return this.localOK;
+  },
+  readWin(){
+    try{
+      const raw=window.name||'';
+      if(!raw.startsWith(this.fallbackPrefix)) return {};
+      const data=JSON.parse(raw.slice(this.fallbackPrefix.length));
+      return data&&typeof data==='object'?data:{};
+    }catch{
+      return {};
+    }
+  },
+  writeWin(data){
+    try{
+      window.name=this.fallbackPrefix+JSON.stringify(data||{});
+    }catch{}
+  },
+  get(k){
+    if(this.canUseLocal()){
+      try{
+        const v=localStorage.getItem(this.prefix+k);
+        if(v!==null) return JSON.parse(v);
+      }catch{
+        this.localOK=false;
+      }
+    }
+    try{
+      const v=sessionStorage.getItem(this.prefix+k);
+      if(v!==null) return JSON.parse(v);
+    }catch{}
+    const data=this.readWin();
+    return Object.prototype.hasOwnProperty.call(data,k)?data[k]:null;
+  },
+  set(k,v){
+    if(this.canUseLocal()){
+      try{
+        if(v===null) localStorage.removeItem(this.prefix+k);
+        else localStorage.setItem(this.prefix+k,JSON.stringify(v));
+      }catch{
+        this.localOK=false;
+      }
+    }
+    try{
+      if(v===null) sessionStorage.removeItem(this.prefix+k);
+      else sessionStorage.setItem(this.prefix+k,JSON.stringify(v));
+    }catch{}
+    const data=this.readWin();
+    if(v===null) delete data[k];
+    else data[k]=v;
+    this.writeWin(data);
+  },
+};
+
+const API = {
+  base:(document.querySelector('meta[name="sc-api-base"]')?.content||'').trim().replace(/\/$/,''),
+};
+
+const DEF_JOBS = [
+  {id:1,title:"Railway Group D Recruitment 2026 (10,000+ Posts)",org:"RRB / Indian Railways",cat:"railway",edu:"10th Pass",loc:"All India",sal:"₹18,000–₹56,900",deadline:"30 April 2026",link:"https://indianrailways.gov.in"},
+  {id:2,title:"Bihar Police Constable Bharti 2026 (21,391 Posts)",org:"Bihar Police",cat:"defence",edu:"12th Pass",loc:"Bihar",sal:"₹21,700+",deadline:"10 May 2026",link:"https://csbc.bihar.gov.in"},
+  {id:3,title:"Bihar SSC Inter Level Recruitment 2026",org:"Bihar Staff Selection Commission",cat:"govt",edu:"12th Pass",loc:"Bihar",sal:"₹20,000–₹60,000",deadline:"15 May 2026",link:"https://bssc.bihar.gov.in"},
+  {id:4,title:"IBPS PO Recruitment 2026",org:"Institute of Banking Personnel",cat:"bank",edu:"Graduate",loc:"All India",sal:"₹36,000–₹63,840",deadline:"20 May 2026",link:"https://ibps.in"},
+  {id:5,title:"Indian Army Agniveer Recruitment 2026",org:"Indian Army",cat:"defence",edu:"10th/12th Pass",loc:"All India",sal:"₹30,000–₹40,000",deadline:"25 April 2026",link:"https://joinindianarmy.nic.in"},
+  {id:6,title:"SBI Clerk (Junior Associate) Bharti 2026",org:"State Bank of India",cat:"bank",edu:"Graduate",loc:"All India",sal:"₹26,000–₹35,000",deadline:"12 May 2026",link:"https://sbi.co.in"},
+  {id:7,title:"SSC CHSL (10+2 Level) Exam 2026",org:"Staff Selection Commission",cat:"govt",edu:"12th Pass",loc:"All India",sal:"₹25,500–₹81,100",deadline:"3 May 2026",link:"https://ssc.nic.in"},
+  {id:8,title:"Data Entry Operator – Work From Home",org:"Various Companies",cat:"private",edu:"10th/12th Pass",loc:"Bihar / Remote",sal:"₹12,000–₹25,000",deadline:"Open",link:""},
+  {id:9,title:"BSEB Inter Admission 2026-28 Online",org:"Bihar School Examination Board",cat:"govt",edu:"10th Pass",loc:"Bihar",sal:"N/A",deadline:"18 April 2026",link:"http://ofssbihar.org"},
+];
+const DEF_NEWS = [
+  {id:1,text:"BSEB INTER ADMISSION SESSION 2026-28 ONLINE — Last Date: 18 April",type:"urgent"},
+  {id:2,text:"Bihar PE PM PMM Entrance Form Online 2026 — Last Date: 21.04.2026",type:"new"},
+  {id:3,text:"Bihar ITI CAT Entrance Form Online 2026 — Last Date: 14.04.2026",type:"new"},
+  {id:4,text:"Agniveer Army Form Online 2026 — Last Date: 10-04-2026",type:"urgent"},
+  {id:5,text:"CBSE 10th Board Result 2026 — Check Karein Abhi",type:"info"},
+  {id:6,text:"BPSC AEDO Admit Card 2026 Released",type:"new"},
+  {id:7,text:"DELE.d Application Form 2026 — Last Date: 09 January 2026",type:"info"},
+  {id:8,text:"UP Police Constable Bharti 2026 — Online Form Open",type:"new"},
+];
+const DEF_STUS = [
+  {id:1,name:"Demo Student",email:"student@demo.com",phone:"9876543210",course:"BA 2nd Year",password:"demo123",joined:"2026-01-15",saved:[]},
+];
+
+function loadData(){
+  return {
+    jobs: LS.get('jobs') || [...DEF_JOBS],
+    news: LS.get('news') || [...DEF_NEWS],
+    students: LS.get('stus') || [...DEF_STUS],
+    nextJob: LS.get('nj') || 10,
+    nextNews: LS.get('nn') || 9,
+    nextStu: LS.get('ns') || 2,
+  };
+}
+function saveData(){
+  LS.set('jobs', S.jobs);
+  LS.set('news', S.news);
+  LS.set('stus', S.students);
+  LS.set('nj',   S.nextJob);
+  LS.set('nn',   S.nextNews);
+  LS.set('ns',   S.nextStu);
+  LS.set('user', S.user || null);
+}
+
+function apiUrl(path){
+  return `${API.base}${path}`;
+}
+
+async function apiFetch(path, opts={}){
+  const init = {
+    method: opts.method || 'GET',
+    headers: {...(opts.headers||{})},
+  };
+  if(opts.body!==undefined){
+    init.body = opts.body;
+    init.headers['Content-Type'] = init.headers['Content-Type'] || 'application/json';
+  }
+  const res = await fetch(apiUrl(path), init);
+  let data = null;
+  try{ data = await res.json(); }catch{}
+  if(!res.ok) throw new Error(data?.error || `Request failed (${res.status})`);
+  return data;
+}
+
+function normalizeJob(job){
+  return {
+    id:Number(job?.id)||0,
+    title:job?.title||'',
+    org:job?.org||'',
+    cat:job?.cat||'govt',
+    edu:job?.edu||'N/A',
+    loc:job?.loc||'N/A',
+    sal:job?.sal||'N/A',
+    deadline:job?.deadline||'Open',
+    link:job?.link||'',
+  };
+}
+
+function normalizeNews(item){
+  const type=['urgent','new','info'].includes(item?.type)?item.type:'info';
+  return {
+    id:Number(item?.id)||0,
+    text:item?.text||'',
+    type,
+  };
+}
+
+function applyRemoteContent(payload){
+  if(Array.isArray(payload?.jobs)){
+    S.jobs = payload.jobs.map(normalizeJob);
+    S.nextJob = Math.max(0, ...S.jobs.map(j=>Number(j.id)||0)) + 1;
+  }
+  if(Array.isArray(payload?.news)){
+    S.news = payload.news.map(normalizeNews);
+    S.nextNews = Math.max(0, ...S.news.map(n=>Number(n.id)||0)) + 1;
+  }
+  S.remote.enabled = true;
+  S.remote.synced = true;
+  S.remote.error = '';
+  S.remote.lastSync = Date.now();
+  saveData();
+}
+
+function canAutoRefresh(){
+  const tag = String(document.activeElement?.tagName||'').toUpperCase();
+  return !S.showAuth
+    && !(S.page==='admin' && S.user?.role==='admin')
+    && !['INPUT','TEXTAREA','SELECT'].includes(tag);
+}
+
+async function syncRemoteContent(opts={}){
+  const silent = opts.silent!==false;
+  try{
+    const before = JSON.stringify({jobs:S.jobs,news:S.news});
+    const data = await apiFetch('/api/site-content');
+    applyRemoteContent(data);
+    const changed = before!==JSON.stringify({jobs:S.jobs,news:S.news});
+    if(changed && canAutoRefresh()) rerender();
+    return true;
+  }catch(err){
+    S.remote.enabled = false;
+    S.remote.error = err?.message || 'Server unavailable';
+    if(!silent) toast('Global server se save/load nahi ho paya. Abhi local mode chal raha hai.','er');
+    return false;
+  }
+}
+
+let _syncTimer = null;
+function startLiveSync(){
+  if(_syncTimer) return;
+  _syncTimer = setInterval(()=>{
+    if(document.visibilityState==='visible') syncRemoteContent({silent:true});
+  }, 25000);
+}
+
+/* ═══ STATE ═══════════════════════════════════════ */
+const S = {
+  page:'home', showAuth:false, authTab:'login',
+  user: LS.get('user') || null,
+  filter:'all', adminTab:'overview', dashTab:'profile',
+  ...loadData(),
+  remote:{enabled:false,synced:false,error:'',lastSync:0},
+};
+/* fix persisted user role */
+if(S.user && !S.user.role){S.user.role='student'}
+window.addEventListener('focus', ()=>{ syncRemoteContent({silent:true}); });
+window.addEventListener('pagehide', saveData);
+
+/* ═══ CAT META ════════════════════════════════════ */
+const CAT = {
+  all:     {label:'🔍 Sab Dekhein', cls:''},
+  govt:    {label:'🏛️ Sarkari',    cls:'bg-g'},
+  railway: {label:'🚂 Railway',    cls:'bg-r'},
+  bank:    {label:'🏦 Bank',       cls:'bg-b'},
+  defence: {label:'🪖 Police/Defence',cls:'bg-d'},
+  private: {label:'🏢 Private',    cls:'bg-p'},
+};
+const SERVICES=[
+  ["🖨️","#1a2a3a","Printing & Scanning","High-quality B&W / color printing, scanning, photocopying."],
+  ["💻","#1a2e1a","Computer Access","High-performance computers with fast internet."],
+  ["📝","#2e2a1a","Online Form Fill-up","Exam, scholarship, admission forms mein expert help."],
+  ["💰","#2e1a1a","Money Withdrawal","Secure AePS cash withdrawal aur money transfer."],
+  ["🪪","#2a1a2e","PAN Card Services","New PAN apply ya corrections — bilkul aasaan."],
+  ["👁️","#1a2e2a","Aadhaar Services","Mobile, address update ya e-Aadhaar download."],
+  ["🎓","#1a2a3a","Scholarship Forms","NSP, Post Matric aur state scholarships mein help."],
+  ["🚂","#2e2a1a","Railway Ticket Booking","IRCTC ticket booking — India mein kahin bhi."],
+  ["💼","#2e1a1a","Job Application Forms","Sarkari Naukri, private jobs, exam forms mein help."],
+  ["💡","#1a2e1a","Bill Payments","Bijli, paani, mobile, DTH — sab ek jagah."],
+  ["📦","#2a1a2e","Lamination & Binding","Documents ki lamination aur spiral binding."],
+  ["🏥","#1a2a3a","Ayushman Card","Ayushman Bharat health card apply karein."],
+  ["🎯","#2e2a1a","Admit Card","Sab exams ka admit card download karein."],
+  ["📋","#1a2e2a","Results Check","Exam results ek jagah pe check karein."],
+  ["🆔","#1a2e1a","Apaar ID (ABC ID)","Academic Bank of Credits ID banwayein."],
+  ["🏠","#2e1a1a","Work From Home","WFH opportunities aur registration mein madad."],
+];
+const LINKS=[
+  ["🎓","https://scholarships.gov.in/","NSP Portal","National Scholarship"],
+  ["🚂","https://www.irctc.co.in/","IRCTC","Railway Ticket Booking"],
+  ["👁️","https://myaadhaar.uidai.gov.in/","MyAadhaar","Aadhaar download / update"],
+  ["🪪","https://tin.tin.nsdl.com/pan/","PAN Card NSDL","New PAN / Correction"],
+  ["📋","http://biharboardonline.bihar.gov.in/","BSEB Portal","Bihar Board 10th & 12th"],
+  ["📰","https://sarkariresult.com/","Sarkari Result","Govt Jobs & Admit Cards"],
+  ["🌾","https://pmkisan.gov.in/","PM Kisan","Status check & apply"],
+  ["🚗","https://parivahan.gov.in/","Parivahan Sewa","Driving License & RC"],
+  ["📚","https://www.ignou.ac.in/","IGNOU","Open University Portal"],
+  ["💸","https://pmsonline.bih.nic.in/","Post Matric PMS","Bihar Scholarship SC/ST"],
+  ["🆔","https://apaar.csccloud.in/","Apaar ID","ABC ID Registration"],
+  ["🏆","https://www.resultbharat.com/","Result Bharat","Exam Results Fast"],
+];
+
+/* ═══ UTILS ════════════════════════════════════════ */
+const $ = id => document.getElementById(id);
+const val = id => ($('_'+id)||{}).value?.trim()||'';
+
+let _tt;
+function toast(msg, type='ok'){
+  const t=$('TT');
+  t.textContent = msg;
+  t.className = 'toast-el '+type+' show';
+  clearTimeout(_tt);
+  _tt = setTimeout(()=>t.classList.remove('show'), 3600);
+}
+
+function rerender(){
+  document.getElementById('root').innerHTML = buildPage();
+  initReveal();
+}
+function go(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function initReveal(){
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})
+  },{threshold:.11});
+  document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+}
+
+/* ════════════════════════════════════════════════════
+   AGE CALCULATOR LOGIC
+════════════════════════════════════════════════════ */
+function calcAge(){
+  const bd = val('ac-bd'), td = val('ac-td');
+  const res = $('age-result'), err = $('age-err');
+  if(res) res.classList.remove('show');
+  if(err) err.classList.remove('show');
+  if(!bd){if(err){err.textContent='⚠️ Birth Date daalen.';err.classList.add('show')}return}
+  const birth = new Date(bd), till = td ? new Date(td) : new Date();
+  if(isNaN(birth.getTime())){if(err){err.textContent='⚠️ Birth Date sahi format mein daalen.';err.classList.add('show')}return}
+  if(birth > till){if(err){err.textContent='⚠️ Birth Date Till Date se pehle honi chahiye.';err.classList.add('show')}return}
+
+  let y = till.getFullYear() - birth.getFullYear();
+  let m = till.getMonth()    - birth.getMonth();
+  let d = till.getDate()     - birth.getDate();
+  if(d<0){m--;const pm=new Date(till.getFullYear(),till.getMonth(),0);d+=pm.getDate()}
+  if(m<0){y--;m+=12}
+
+  /* extra details */
+  const diffMs   = till - birth;
+  const totalDays = Math.floor(diffMs / 86400000);
+  const totalWks  = Math.floor(totalDays / 7);
+  const totalHrs  = Math.floor(diffMs / 3600000);
+  const totalMins = Math.floor(diffMs / 60000);
+  const days_of_week=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months_hi=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const bday_this_year = new Date(till.getFullYear(), birth.getMonth(), birth.getDate());
+  let next_bday = new Date(till.getFullYear(), birth.getMonth(), birth.getDate());
+  if(bday_this_year <= till) next_bday.setFullYear(till.getFullYear()+1);
+  const days_to_bday = Math.ceil((next_bday - till)/86400000);
+
+  $('ry').textContent=y; $('rm').textContent=m; $('rd').textContent=d;
+  $('age-sum').innerHTML=`Aapki age hai <span>${y} saal, ${m} mahine, ${d} din</span>`;
+  $('age-extra').innerHTML=
+    `Kul din: <span>${totalDays.toLocaleString('en-IN')}</span> &nbsp;|&nbsp; `+
+    `Kul hafte: <span>${totalWks.toLocaleString('en-IN')}</span> &nbsp;|&nbsp; `+
+    `Kul ghante: <span>${totalHrs.toLocaleString('en-IN')}</span><br/>`+
+    `Birthday: <span>${days_of_week[birth.getDay()]}</span> ko tha &nbsp;|&nbsp; `+
+    `Agle Birthday mein: <span>${days_to_bday} din</span> baaki hain`;
+  if(res) res.classList.add('show');
+}
+
+/* ════════════════════════════════════════════════════
+   PAGE BUILDER
+════════════════════════════════════════════════════ */
+function buildPage(){
+  if(S.page==='admin' && S.user?.role==='admin') return buildAdmin();
+  if(S.page==='dash'  && S.user?.role==='student') return buildDash();
+  return buildHome();
+}
+
+/* ════ HOME ════════════════════════════════════════ */
+function buildHome(){
+  const nt = [...S.news,...S.news].map(n=>`<span>${n.text}</span>`).join('');
+  const jList = S.jobs.filter(j=>S.filter==='all'||j.cat===S.filter);
+  return `
+<!-- TICKER -->
+<div class="ticker"><div class="t-in">
+  <div class="t-lbl">🔴 LIVE</div>
+  <div class="t-wrap"><div class="t-track">${nt}</div></div>
+</div></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nv">
+    <div class="logo" onclick="S.page='home';rerender()">
+      <div class="logo-mk">💻</div>
+      <div><div class="l1">Shivanshu Cafe</div><div class="l2">Belaganj · Gaya · Bihar</div></div>
+    </div>
+    <ul class="nl">
+      <li><a onclick="go('s-hero')">Home</a></li>
+      <li><a onclick="go('s-why')">About</a></li>
+      <li><a onclick="go('s-srv')">Services</a></li>
+      <li><a onclick="go('s-jobs')">Job Alerts</a></li>
+      <li><a onclick="go('s-links')">Links</a></li>
+      <li><a onclick="go('s-pricing')">Pricing</a></li>
+      <li><a onclick="go('s-contact')">Contact</a></li>
+    </ul>
+    <div class="nv-r">${navRight()}</div>
+    <button class="hbg" onclick="toggleMob()">☰</button>
+  </div>
+  <div class="mob" id="mob">
+    <a onclick="go('s-hero');toggleMob()">🏠 Home</a>
+    <a onclick="go('s-srv');toggleMob()">🛎️ Services</a>
+    <a onclick="go('s-jobs');toggleMob()">💼 Job Alerts</a>
+    <a onclick="go('s-links');toggleMob()">🔗 Quick Links</a>
+    <a onclick="go('s-pricing');toggleMob()">💰 Pricing</a>
+    <a onclick="go('s-contact');toggleMob()">📞 Contact</a>
+    ${!S.user
+      ?`<a onclick="openAuth('login')">👤 Login</a><a onclick="openAuth('register')">✍️ Register</a>`
+      :S.user.role==='admin'
+        ?`<a onclick="S.page='admin';rerender()">🛠️ Admin Panel</a><a onclick="doLogout()">🚪 Logout</a>`
+        :`<a onclick="S.page='dash';rerender()">📊 My Dashboard</a><a onclick="doLogout()">🚪 Logout</a>`}
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="s-hero"><div class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="hgrid"></div>
+  <div class="hc">
+    <div>
+      <div class="h-pill"><em></em>Belaganj, Gaya ka #1 Digital Hub</div>
+      <h1 class="h-ttl">Shivanshu<br/><span class="gr-txt">Cyber Cafe</span></h1>
+      <p class="h-sub">Printing, Aadhaar, PAN Card, Scholarship, Railway Ticket, Job Forms aur bahut kuch — sab ek hi jagah. <strong>Near Ramji Market, Belaganj, Gaya (Bihar)</strong></p>
+      <div class="hbtns">
+        <button class="hb1" onclick="go('s-srv')">🛎️ Services Dekhein</button>
+        <button class="hb2" onclick="go('s-jobs')">💼 Job Alerts</button>
+      </div>
+    </div>
+    <div class="h-card">
+      <div class="live-b"><div class="live-dot"></div><div class="live-t"><span>Abhi Khula Hai</span> · Mon–Sat 8AM–9PM</div></div>
+      <div class="stat-row">
+        <div class="stat-c"><div class="sn">500+</div><div class="sl">Happy Students</div></div>
+        <div class="stat-c"><div class="sn">5K+</div><div class="sl">Pages / Month</div></div>
+        <div class="stat-c"><div class="sn">10</div><div class="sl">Computers</div></div>
+        <div class="stat-c"><div class="sn">98%</div><div class="sl">Satisfaction</div></div>
+      </div>
+      <div class="qa-g">
+        <div class="qa" onclick="go('s-jobs')"><span class="qi">💼</span>Job Alerts</div>
+        <div class="qa" onclick="openAuth('register')"><span class="qi">✍️</span>Register</div>
+        <div class="qa" onclick="go('s-contact')"><span class="qi">📞</span>Contact</div>
+        <div class="qa" onclick="go('s-links')"><span class="qi">🔗</span>Quick Links</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- WHY -->
+<div id="s-why"><section class="why-bg">
+  <div class="si">
+    <div class="shd rv">
+      <div class="s-pill">✦ Kyun Chunein Hamein?</div>
+      <h2 class="s-ttl">Hamari <span class="acc">Khaasiyat</span></h2>
+      <p class="s-desc">Hum aapko best technology aur expert support dete hain — aapke har digital kaam ke liye.</p>
+    </div>
+    <div class="why-g">
+      <div class="wc rv d1"><div class="wic" style="background:rgba(79,172,254,.12)">🚀</div><h3>High-Speed Internet</h3><p>Fast internet aur powerful computers — online classes, forms, ya research ke liye bilkul sahi.</p></div>
+      <div class="wc rv d2"><div class="wic" style="background:rgba(0,230,118,.1)">🔒</div><h3>Safe & Secure</h3><p>Aapka data aur privacy bilkul safe. Advanced security measures aur regular maintenance ke saath.</p></div>
+      <div class="wc rv d3"><div class="wic" style="background:rgba(247,148,29,.1)">🤝</div><h3>Expert Support</h3><p>Hamari team hamesha taiyaar — form fill-up se lekar job apply tak, har kaam mein madad milegi.</p></div>
+    </div>
+  </div>
+</section></div>
+
+<!-- SERVICES -->
+<div id="s-srv"><section class="srv-bg">
+  <div class="si">
+    <div class="shd rv">
+      <div class="s-pill">✦ Hamaari Sewaein</div>
+      <h2 class="s-ttl">Core <span class="acc">Services</span></h2>
+      <p class="s-desc">Modern student ki har digital zaroorat — ek hi jagah pe. Expert team ki madad se.</p>
+    </div>
+    <div class="srv-g">
+      ${SERVICES.map(([ic,bg,nm,dc],i)=>`<div class="sc2 rv" style="transition-delay:${(i%4)*.06}s"><div class="si2" style="background:${bg}">${ic}</div><div class="sb2"><h3>${nm}</h3><p>${dc}</p></div></div>`).join('')}
+    </div>
+  </div>
+</section></div>
+
+<!-- JOB ALERTS -->
+<div id="s-jobs"><section class="jobs-bg">
+  <div class="si">
+    <div class="shd rv">
+      <div class="s-pill">✦ Sarkari & Private Jobs</div>
+      <h2 class="s-ttl">💼 Latest <span class="acc">Job Alerts</span></h2>
+      <p class="s-desc">Sabse taze sarkari aur private naukri ki updates — form apply karne mein hum puri help karenge!</p>
+    </div>
+    <div class="jab rv">
+      <div><h3>🔔 Job Alerts Subscribe Karein</h3><p>Nayi naukri ka notification seedha mobile par paayein — bilkul free!</p></div>
+      <div class="sf"><input id="_sub-ph" type="tel" placeholder="10 digit mobile number" maxlength="10"/><button onclick="doSub()">Subscribe Karein</button></div>
+    </div>
+    <div class="jfil">
+      ${Object.entries(CAT).map(([k,v])=>`<button class="fb ${S.filter===k?'act':''}" onclick="S.filter='${k}';rerender();setTimeout(()=>go('s-jobs'),50)">${v.label}</button>`).join('')}
+    </div>
+    <div class="jg">
+      ${jList.length ? jList.map(jobCard).join('') : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--mt)">Is category mein abhi koi job nahi hai.</div>'}
+    </div>
+  </div>
+</section></div>
+
+<!-- QUICK LINKS -->
+<div id="s-links"><section class="lk-bg">
+  <div class="si">
+    <div class="shd rv">
+      <div class="s-pill">✦ Important Portals</div>
+      <h2 class="s-ttl">Student <span class="acc">Quick Links</span></h2>
+      <p class="s-desc">University portals, results, scholarship sites — seedha yahan se access karein.</p>
+    </div>
+    <div class="lk-g">
+      ${LINKS.map(([ic,url,nm,dc],i)=>`<a class="lkc rv" style="transition-delay:${(i%4)*.06}s" href="${url}" target="_blank" rel="noopener"><span class="li">${ic}</span><h4>${nm}</h4><p>${dc}</p></a>`).join('')}
+    </div>
+  </div>
+</section></div>
+
+<!-- PRICING -->
+<div id="s-pricing"><section class="pr-bg">
+  <div class="si">
+    <div class="shd rv">
+      <div class="s-pill">✦ Hamara Kiraya</div>
+      <h2 class="s-ttl">Pricing <span class="acc">Plans</span></h2>
+      <p class="s-desc">Apni zaroorat ke hisaab se plan chunein — sab mein best value guaranteed.</p>
+    </div>
+    <div class="pr-g">
+      <div class="prc rv d1"><div class="pr-ico">🌱</div><div class="pr-nm">Basic Access</div><div><span class="pr-am">₹50</span><span class="pr-pe">per din</span></div><ul class="pr-ul"><li>2 Ghante Computer Access</li><li>10 B&amp;W Prints</li><li>Basic Wi-Fi</li><li>Form Assistance</li></ul><button class="pr-btn" onclick="toast('Basic plan ke liye call karein! 📞 8935897611','inf')">Shuru Karein</button></div>
+      <div class="prc pop rv d2"><div class="pop-tag">⭐ Most Popular</div><div class="pr-ico">🎓</div><div class="pr-nm">Student Pack</div><div><span class="pr-am">₹499</span><span class="pr-pe">per mahina</span></div><ul class="pr-ul"><li>60 Ghante Computer Access</li><li>200 B&amp;W Prints</li><li>High-Speed Wi-Fi</li><li>Form Assistance</li><li>Job Alert Notifications</li></ul><button class="pr-btn" onclick="toast('Student Pack ke liye call karein! 📞 8935897611','inf')">Shuru Karein</button></div>
+      <div class="prc rv d3"><div class="pr-ico">🚀</div><div class="pr-nm">Pro Researcher</div><div><span class="pr-am">₹999</span><span class="pr-pe">per mahina</span></div><ul class="pr-ul"><li>Unlimited Computer Access</li><li>500 B&amp;W + 50 Color Prints</li><li>Priority Wi-Fi</li><li>Full Form Assistance</li><li>Priority Job Alerts</li><li>Lamination (5 free)</li></ul><button class="pr-btn" onclick="toast('Pro plan ke liye call karein! 📞 8935897611','inf')">Shuru Karein</button></div>
+    </div>
+  </div>
+</section></div>
+
+<!-- CONTACT -->
+<div id="s-contact"><section class="ct-bg">
+  <div class="si">
+    <div class="shd rv">
+      <div class="s-pill">✦ Sampark Karein</div>
+      <h2 class="s-ttl">Get In <span class="acc">Touch</span></h2>
+      <p class="s-desc">Koi sawaal ho ya service chahiye — hamse seedha sampark karein.</p>
+    </div>
+    <div class="ct-g">
+      <div class="rv">
+        <h3>Hum Yahan Hain! 📍</h3>
+        <p>Aap hamare cafe mein aayein ya phone/WhatsApp karein — har sawaal ka jawaab milega aur har service available hai.</p>
+        <div class="iitem"><div class="iic">📍</div><div class="itx"><strong>Hamara Pata</strong><span>Near Ramji Market, Belaganj, Gaya Ji (Bihar)</span></div></div>
+        <div class="iitem"><div class="iic">📞</div><div class="itx"><strong>Phone / WhatsApp</strong><span><a href="tel:+918935897611" style="color:var(--or)">+91 8935897611</a></span></div></div>
+        <div class="iitem"><div class="iic">✉️</div><div class="itx"><strong>Email</strong><span><a href="mailto:shivanshucafe@gmail.com" style="color:var(--or)">shivanshucafe@gmail.com</a></span></div></div>
+        <div class="iitem"><div class="iic">🕐</div><div class="itx"><strong>Opening Hours</strong><span>Monday – Saturday: 8:00 AM – 9:00 PM</span></div></div>
+        <p style="font-size:12.5px;color:var(--mt);margin-top:18px;margin-bottom:9px">Social Media par follow karein:</p>
+        <div class="srow">
+          <a class="sbtn" href="http://instagram.com/shivanshucafe" target="_blank" rel="noopener" title="Instagram">📸</a>
+          <a class="sbtn" href="http://facebook.com/shivanshucafe.in" target="_blank" rel="noopener" title="Facebook">📘</a>
+          <a class="sbtn" href="http://youtube.com/@shivanshucafe" target="_blank" rel="noopener" title="YouTube">▶️</a>
+          <a class="sbtn" href="https://wa.me/+918935897611" target="_blank" rel="noopener" title="WhatsApp">📱</a>
+          <a class="sbtn" href="http://x.com/shivanshu_cafe" target="_blank" rel="noopener" title="X">𝕏</a>
+          <a class="sbtn" href="http://www.linkedin.com/in/shivanshucafe" target="_blank" rel="noopener" title="LinkedIn">💼</a>
+        </div>
+      </div>
+      <div class="ctf rv d2">
+        <h3>Message Bhejein</h3>
+        <div class="fg"><label>Poora Naam</label><input id="_cn" placeholder="Apna naam"/></div>
+        <div class="fg"><label>Mobile / Email</label><input id="_cc" placeholder="Contact info"/></div>
+        <div class="fg"><label>Service Chunein</label><select id="_cs"><option>-- Service Chunein --</option><option>Printing & Scanning</option><option>Aadhaar Services</option><option>PAN Card</option><option>Scholarship Form</option><option>Railway Ticket</option><option>Job Application Form</option><option>Admit Card</option><option>Result Check</option><option>Bill Payment</option><option>Age Calculator</option><option>Other</option></select></div>
+        <div class="fg"><label>Message</label><textarea id="_cm" placeholder="Apni baat likhein..."></textarea></div>
+        <button class="ctf-btn" onclick="doContact()">📨 Message Bhejein</button>
+      </div>
+    </div>
+  </div>
+</section></div>
+
+<!-- CTA -->
+<div class="cta rv">
+  <h2>Aaj Hi Shuru Karein! 🚀</h2>
+  <p>Hazaron students hamari seva le rahe hain — aap bhi join karein aur jobs save karein.</p>
+  <div class="cta-btns">
+    <button class="cta-p" onclick="openAuth('register')">📝 Register Karein</button>
+    <button class="cta-s" onclick="go('s-jobs')">💼 Job Alerts Dekhein</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <div class="logo" style="margin-bottom:8px">
+        <div class="logo-mk" style="width:38px;height:38px;font-size:18px">💻</div>
+        <div><div class="l1">Shivanshu Cafe</div><div class="l2">Belaganj · Gaya · Bihar</div></div>
+      </div>
+      <p>Shivanshu Cyber Cafe aapka digital hub hai — printing se lekar job alerts tak, sab ek jagah. Belaganj, Gaya ka sabse bharosemand cyber cafe.</p>
+      <div class="ft-s">
+        <a class="sbtn" href="http://instagram.com/shivanshucafe" target="_blank">📸</a>
+        <a class="sbtn" href="http://facebook.com/shivanshucafe.in" target="_blank">📘</a>
+        <a class="sbtn" href="http://youtube.com/@shivanshucafe" target="_blank">▶️</a>
+        <a class="sbtn" href="https://wa.me/+918935897611" target="_blank">📱</a>
+        <a class="sbtn" href="http://x.com/shivanshu_cafe" target="_blank">𝕏</a>
+      </div>
+    </div>
+    <div class="ft-col"><h4>Quick Links</h4><ul>
+      <li><a onclick="go('s-hero')">Home</a></li>
+      <li><a onclick="go('s-srv')">Services</a></li>
+      <li><a onclick="go('s-jobs')">Job Alerts</a></li>
+      <li><a onclick="go('s-pricing')">Pricing</a></li>
+      <li><a onclick="go('s-contact')">Contact</a></li>
+    </ul></div>
+    <div class="ft-col"><h4>Services</h4><ul>
+      <li><a>Printing & Scanning</a></li>
+      <li><a>Aadhaar / PAN Card</a></li>
+      <li><a>Scholarship Forms</a></li>
+      <li><a>Railway Tickets</a></li>
+      <li><a>Admit Card / Results</a></li>
+    </ul></div>
+    <div class="ft-col"><h4>Sampark</h4><ul>
+      <li><a>📍 Near Ramji Market, Belaganj, Gaya</a></li>
+      <li><a href="tel:+918935897611">📞 +91 8935897611</a></li>
+      <li><a href="mailto:shivanshucafe@gmail.com">✉️ shivanshucafe@gmail.com</a></li>
+      <li><a>🕐 Mon–Sat: 8AM – 9PM</a></li>
+    </ul></div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2026 <span class="hl">Shivanshu Cafe</span>, Belaganj, Gaya Ji (Bihar). Sab adhikar surakshit.</span>
+    <span>Made with ❤️ for <span class="hl">Students of Bihar</span></span>
+  </div>
+</footer>
+${S.showAuth ? buildAuth() : ''}`;
+}
+
+function navRight(){
+  const u=S.user;
+  if(!u) return`<button class="nb nb-g" onclick="openAuth('login')">Login</button><button class="nb nb-o" onclick="openAuth('register')">Register</button>`;
+  if(u.role==='admin') return`<span class="status-on"><span class="status-dot"></span>Admin</span><button class="nb nb-adm" onclick="S.page='admin';rerender()">Admin Panel</button><button class="nb nb-g" onclick="doLogout()">Logout</button>`;
+  return`<span style="font-size:12px;color:var(--mt2)">👤 ${u.name.split(' ')[0]}</span><button class="nb nb-grn" onclick="S.page='dash';rerender()">My Dashboard</button><button class="nb nb-g" onclick="doLogout()">Logout</button>`;
+}
+
+function jobCard(j){
+  const m=CAT[j.cat]||CAT.govt;
+  const isSaved = S.user?.role==='student' && (S.user.saved||[]).includes(j.id);
+  return`<div class="jcard rv">
+    <span class="jbadge ${m.cls}">${m.label}</span>
+    <div class="jt2">${j.title}</div>
+    <div class="jorg">🏢 ${j.org}</div>
+    <div class="jmeta"><span class="jtg">📚 ${j.edu}</span><span class="jtg">📍 ${j.loc}</span><span class="jtg">💰 ${j.sal}</span></div>
+    <div class="jdl">⏰ Last Date: ${j.deadline}</div>
+    <div class="jacts">
+      <button class="btn-ap" onclick="doApply(${j.id})">Apply Karein</button>
+      <button class="btn-sv" onclick="doSave(${j.id})" style="${isSaved?'color:var(--or);border-color:var(--bd-o)':''}">${isSaved?'✅ Saved':'🔖 Save'}</button>
+    </div>
+  </div>`;
+}
+
+/* ════ AUTH ════════════════════════════════════════ */
+function buildAuth(){
+  const lg=S.authTab==='login';
+  return`<div class="overlay" onclick="if(event.target===this)closeAuth()">
+  <div class="modal">
+    <button class="mc" onclick="closeAuth()">✕</button>
+    <h3>${lg?'👤 Login Karein':'✍️ Register Karein'}</h3>
+    <div class="atabs">
+      <button class="atab ${lg?'act':''}" onclick="S.authTab='login';rerender()">Login</button>
+      <button class="atab ${!lg?'act':''}" onclick="S.authTab='register';rerender()">Register</button>
+    </div>
+    <div id="amsg"></div>
+    ${lg?`
+      <div class="mfg"><label>Email ya Mobile</label><input id="_lem" placeholder="Email ya mobile number"/></div>
+      <div class="mfg"><label>Password</label><input id="_lpw" type="password" placeholder="Password daalen"/></div>
+      <button class="m-btn" onclick="doLogin()">Login Karein →</button>
+      <p style="text-align:center;margin-top:11px;font-size:11.5px;color:var(--mt)">Admin login: <b style="color:var(--or)">admin</b> / <b style="color:var(--or)">admin@123</b></p>
+    `:`
+      <div class="mfg"><label>Poora Naam *</label><input id="_rnm" placeholder="Apna poora naam"/></div>
+      <div class="mfg"><label>Email *</label><input id="_rem" placeholder="Email address"/></div>
+      <div class="mfg"><label>Mobile *</label><input id="_rph" type="tel" placeholder="10 digit mobile number" maxlength="10"/></div>
+      <div class="mfg"><label>Course / Class</label><input id="_rcr" placeholder="Jaise: BA 2nd Year, 12th, B.Tech"/></div>
+      <div class="mfg"><label>Password * (min 6 characters)</label><input id="_rpw" type="password" placeholder="Minimum 6 characters"/></div>
+      <button class="m-btn" onclick="doRegister()">Register Karein →</button>
+    `}
+  </div></div>`;
+}
+function setMsg(msg,ok=false){const e=$('amsg');if(e)e.innerHTML=`<div class="emsg ${ok?'ok':'err'}">${ok?'✅':'⚠️'} ${msg}</div>`}
+
+/* ════ ADMIN ════════════════════════════════════════ */
+function buildAdmin(){
+  const t=S.adminTab;
+  return`
+<nav><div class="nv">
+  <div class="logo" onclick="S.page='home';rerender()">
+    <div class="logo-mk">💻</div>
+    <div><div class="l1">Shivanshu Cafe</div><div class="l2">Admin Panel</div></div>
+  </div>
+  <div class="nv-r">
+    <span class="status-on"><span class="status-dot"></span>Admin Mode</span>
+    <button class="nb nb-g" onclick="S.page='home';rerender()">🌐 Website</button>
+    <button class="nb nb-g" onclick="doLogout()">Logout</button>
+  </div>
+</div></nav>
+<div class="adm-wrap">
+  <div class="adm-hdr">
+    <div><h2>🛠️ Admin Panel – Shivanshu Cafe</h2><p>Jobs post karein · News ticker control karein · Students manage karein</p></div>
+    <button class="nb nb-o" onclick="S.page='home';rerender()">🌐 Live Website Dekhein</button>
+  </div>
+  <p style="font-size:12px;color:${S.remote.enabled?'#73f0a8':'#ff8a80'};margin:6px 0 14px 0">${S.remote.enabled?'Global live sync active - domain par sab jagah same jobs/news dikhengi.':'Abhi local-only mode hai - global sync ke liye backend API/server chalu rakhein.'}</p>
+  <div class="adm-tabs">
+    <button class="atab2 ${t==='overview'?'act':''}" onclick="S.adminTab='overview';rerender()">📊 Overview</button>
+    <button class="atab2 ${t==='jobs'?'act':''}" onclick="S.adminTab='jobs';rerender()">💼 Jobs Manage</button>
+    <button class="atab2 ${t==='news'?'act':''}" onclick="S.adminTab='news';rerender()">📢 News / Ticker</button>
+    <button class="atab2 ${t==='students'?'act':''}" onclick="S.adminTab='students';rerender()">👥 Students</button>
+  </div>
+  ${t==='overview'?adminOv():t==='jobs'?adminJobs():t==='news'?adminNews():adminStus()}
+</div>`;
+}
+
+function adminOv(){
+  const cats = Object.keys(CAT).filter(k=>k!=='all');
+  return`
+  <div class="st-cs">
+    <div class="stc"><div class="stc-n">${S.jobs.length}</div><div class="stc-l">Total Jobs</div></div>
+    <div class="stc"><div class="stc-n">${S.students.length}</div><div class="stc-l">Registered Students</div></div>
+    <div class="stc"><div class="stc-n">${S.news.length}</div><div class="stc-l">News Items</div></div>
+    <div class="stc"><div class="stc-n">${S.jobs.filter(j=>j.deadline!=='Open').length}</div><div class="stc-l">Active Jobs</div></div>
+  </div>
+  <div class="adm-sec">
+    <h3>📊 Category-wise Jobs</h3>
+    <table class="atbl"><thead><tr><th>Category</th><th>Total Jobs</th><th>Action</th></tr></thead><tbody>
+    ${cats.map(k=>`<tr><td><span class="jbadge ${CAT[k].cls}">${CAT[k].label}</span></td><td>${S.jobs.filter(j=>j.cat===k).length}</td><td><button class="abtn sm" onclick="S.adminTab='jobs';rerender()">Manage</button></td></tr>`).join('')}
+    </tbody></table>
+  </div>
+  <div class="adm-sec">
+    <h3>📋 Recent Jobs (Latest 5)</h3>
+    <table class="atbl"><thead><tr><th>Title</th><th>Category</th><th>Organisation</th><th>Last Date</th></tr></thead>
+    <tbody>${S.jobs.slice(0,5).map(j=>`<tr><td style="max-width:240px;font-size:12px">${j.title}</td><td><span class="jbadge ${(CAT[j.cat]||CAT.govt).cls}">${j.cat}</span></td><td style="font-size:12px">${j.org}</td><td style="font-size:12px;color:#ff8a65">${j.deadline}</td></tr>`).join('')}</tbody>
+    </table>
+  </div>`;
+}
+
+function adminJobs(){
+  return`
+  <div class="adm-sec">
+    <h3>➕ Naya Job Post Karein</h3>
+    <div class="afg">
+      <div class="af full"><label>Job Title *</label><input id="_ajt" placeholder="Jaise: Bihar Police Constable Bharti 2026 (21,391 Posts)"/></div>
+      <div class="af"><label>Organisation *</label><input id="_ajo" placeholder="Jaise: Bihar Police"/></div>
+      <div class="af"><label>Category *</label><select id="_ajc"><option value="govt">🏛️ Sarkari</option><option value="railway">🚂 Railway</option><option value="bank">🏦 Bank</option><option value="defence">🪖 Defence/Police</option><option value="private">🏢 Private</option></select></div>
+      <div class="af"><label>Qualification / Education</label><input id="_aje" placeholder="10th Pass / 12th Pass / Graduate"/></div>
+      <div class="af"><label>Location</label><input id="_ajl" placeholder="Bihar / All India / Remote"/></div>
+      <div class="af"><label>Salary Range</label><input id="_ajs" placeholder="₹21,000–₹56,000 ya N/A"/></div>
+      <div class="af"><label>Last Date *</label><input id="_ajd" placeholder="30 April 2026 ya Open"/></div>
+      <div class="af"><label>Apply Link (optional)</label><input id="_ajlk" placeholder="https://..."/></div>
+    </div>
+    <button class="abtn" onclick="addJob()">✅ Job Post Karein</button>
+  </div>
+  <div class="adm-sec">
+    <h3>📋 All Jobs (${S.jobs.length} total)</h3>
+    <table class="atbl"><thead><tr><th>#</th><th>Title</th><th>Category</th><th>Organisation</th><th>Last Date</th><th>Action</th></tr></thead>
+    <tbody>${S.jobs.map(j=>`
+      <tr>
+        <td>${j.id}</td>
+        <td style="max-width:210px;font-size:12px;line-height:1.4">${j.title}</td>
+        <td><span class="jbadge ${(CAT[j.cat]||CAT.govt).cls}">${j.cat}</span></td>
+        <td style="font-size:12px">${j.org}</td>
+        <td style="font-size:12px;color:#ff8a65">${j.deadline}</td>
+        <td><button class="abtn del" onclick="delJob(${j.id})">🗑️ Delete</button></td>
+      </tr>`).join('')}
+    </tbody></table>
+  </div>`;
+}
+
+function adminNews(){
+  return`
+  <div class="adm-sec">
+    <h3>➕ Nayi News Add Karein</h3>
+    <p style="font-size:12.5px;color:var(--mt2);margin-bottom:14px">Ye news website ke upar scrolling ticker mein dikhegi — real-time update hoti hai.</p>
+    <div class="anrow">
+      <input id="_ant" placeholder="News ya update text likhen..."/>
+      <select id="_any"><option value="new">🆕 New</option><option value="urgent">🚨 Urgent</option><option value="info">ℹ️ Info</option></select>
+      <button class="abtn" onclick="addNews()">➕ Add Karein</button>
+    </div>
+  </div>
+  <div class="adm-sec">
+    <h3>📢 Current Ticker News (${S.news.length} items)</h3>
+    <div>
+      ${S.news.map(n=>`
+        <div class="nitem">
+          <span class="tpill ${n.type==='urgent'?'tp-u':n.type==='new'?'tp-n':'tp-i'}">${n.type==='urgent'?'🚨 URGENT':n.type==='new'?'🆕 NEW':'ℹ️ INFO'}</span>
+          <span class="nt">${n.text}</span>
+          <button class="abtn del" onclick="delNews(${n.id})">✕</button>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function adminStus(){
+  return`<div class="adm-sec">
+    <h3>👥 Registered Students (${S.students.length} total)</h3>
+    <table class="atbl"><thead><tr><th>#</th><th>Naam</th><th>Email</th><th>Mobile</th><th>Course</th><th>Joined</th><th>Saved Jobs</th><th>Action</th></tr></thead>
+    <tbody>${S.students.map(s=>`
+      <tr>
+        <td>${s.id}</td><td>${s.name}</td><td style="font-size:12px">${s.email}</td>
+        <td>${s.phone}</td><td>${s.course||'—'}</td><td>${s.joined}</td>
+        <td style="text-align:center">${(s.saved||[]).length}</td>
+        <td><button class="abtn del" onclick="delStudent(${s.id})">🗑️</button></td>
+      </tr>`).join('')}
+    </tbody></table>
+  </div>`;
+}
+
+/* ════ DASHBOARD ════════════════════════════════════ */
+function buildDash(){
+  const u=S.user;
+  const dt=S.dashTab;
+  const sv=S.jobs.filter(j=>(u.saved||[]).includes(j.id));
+  return`
+<nav><div class="nv">
+  <div class="logo" onclick="S.page='home';rerender()">
+    <div class="logo-mk">💻</div>
+    <div><div class="l1">Shivanshu Cafe</div><div class="l2">My Dashboard</div></div>
+  </div>
+  <div class="nv-r">
+    <span class="status-on"><span class="status-dot" style="background:var(--blue);box-shadow:0 0 6px var(--blue)"></span>Student</span>
+    <button class="nb nb-g" onclick="S.page='home';rerender()">🏠 Website</button>
+    <button class="nb nb-g" onclick="doLogout()">Logout</button>
+  </div>
+</div></nav>
+<div class="dsh-wrap">
+  <div class="dsh-hdr">
+    <div><h2>👋 Namaste, ${u.name}!</h2><p>Aapka personal student dashboard — sab kuch ek jagah.</p></div>
+    <div class="status-on"><span class="status-dot" style="background:var(--blue);box-shadow:0 0 6px var(--blue)"></span>Active Member</div>
+  </div>
+  <div class="dsh-tabs">
+    <button class="dtab ${dt==='profile'?'act':''}" onclick="S.dashTab='profile';rerender()">👤 My Profile</button>
+    <button class="dtab ${dt==='jobs'?'act':''}" onclick="S.dashTab='jobs';rerender()">🔖 Saved Jobs (${sv.length})</button>
+    <button class="dtab ${dt==='alerts'?'act':''}" onclick="S.dashTab='alerts';rerender()">💼 Job Alerts</button>
+    <button class="dtab ${dt==='updates'?'act':''}" onclick="S.dashTab='updates';rerender()">📢 Updates</button>
+    <button class="dtab ${dt==='age'?'act':''}" onclick="S.dashTab='age';rerender()">🎂 Age Calculator</button>
+  </div>
+  <div class="dsh-g">
+    <!-- SIDEBAR PROFILE -->
+    <div class="dprof">
+      <div class="dpav">${u.name.charAt(0).toUpperCase()}</div>
+      <div class="dpnm">${u.name}</div>
+      <div class="dpem">${u.email}</div>
+      <div class="ddet">
+        <div class="ddi"><span>Mobile</span><span>${u.phone}</span></div>
+        <div class="ddi"><span>Course</span><span>${u.course||'—'}</span></div>
+        <div class="ddi"><span>Joined</span><span>${u.joined}</span></div>
+        <div class="ddi"><span>Saved Jobs</span><span>${sv.length}</span></div>
+        <div class="ddi"><span>Status</span><span style="color:var(--grn)">✅ Active</span></div>
+      </div>
+      <a href="https://wa.me/+918935897611" target="_blank" style="display:block;margin-top:16px;background:linear-gradient(135deg,#00c853,#00e676);color:#000;padding:10px;border-radius:9px;text-align:center;font-weight:800;font-size:13px;">📱 WhatsApp Contact</a>
+      <button style="width:100%;margin-top:8px;background:var(--glass2);color:var(--mt2);padding:10px;border-radius:9px;border:1px solid var(--bd);font-weight:600;font-size:12.5px;cursor:pointer" onclick="S.page='home';go('s-jobs');rerender()">💼 Browse Jobs</button>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div class="dsh-main">
+      ${dt==='profile'?dashProfile(u):dt==='jobs'?dashSaved(sv):dt==='alerts'?dashAlerts():dt==='updates'?dashUpdates():dashAge()}
+    </div>
+  </div>
+</div>`;
+}
+
+function dashProfile(u){return`
+  <div class="ds">
+    <h3>👤 My Profile</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      ${[['Full Name',u.name],['Email',u.email],['Mobile',u.phone],['Course/Class',u.course||'—'],['Member Since',u.joined],['Saved Jobs',(u.saved||[]).length+' jobs']].map(([l,v])=>`
+        <div style="background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:9px;padding:13px">
+          <div style="font-size:11px;color:var(--mt);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">${l}</div>
+          <div style="font-size:14px;color:#fff;font-weight:600">${v}</div>
+        </div>`).join('')}
+    </div>
+    <div style="margin-top:16px;background:rgba(247,148,29,.06);border:1px solid rgba(247,148,29,.18);border-radius:10px;padding:14px">
+      <p style="font-size:13px;color:var(--mt2);line-height:1.7">📍 <strong style="color:#fff">Shivanshu Cafe</strong> — Near Ramji Market, Belaganj, Gaya Ji (Bihar)<br/>📞 <a href="tel:+918935897611" style="color:var(--or)">+91 8935897611</a> &nbsp;|&nbsp; ✉️ <a href="mailto:shivanshucafe@gmail.com" style="color:var(--or)">shivanshucafe@gmail.com</a></p>
+    </div>
+  </div>`}
+
+function dashSaved(sv){return`
+  <div class="ds">
+    <h3>🔖 Saved Jobs (${sv.length})</h3>
+    ${sv.length===0?`<div class="empty"><div class="ei">📂</div>Koi saved job nahi hai.<br/><button class="abtn" style="margin-top:12px" onclick="S.page='home';rerender();setTimeout(()=>go('s-jobs'),100)">Jobs Browse Karein</button></div>`
+    :sv.map(j=>`
+      <div class="sjitem">
+        <div style="flex:1">
+          <div class="sjt">${j.title}</div>
+          <div class="sjo">${j.org} &nbsp;|&nbsp; ⏰ ${j.deadline} &nbsp;|&nbsp; 💰 ${j.sal}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button class="btn-ap" style="font-size:11.5px;padding:6px 12px" onclick="toast('Hamse contact karein — 📞 8935897611','inf')">Apply</button>
+          <button class="abtn del" onclick="removeSaved(${j.id})">✕</button>
+        </div>
+      </div>`).join('')}
+  </div>`}
+
+function dashAlerts(){return`
+  <div class="ds">
+    <h3>💼 Latest Job Alerts</h3>
+    ${S.jobs.map(j=>`
+      <div class="sjitem">
+        <div style="flex:1">
+          <span class="jbadge ${(CAT[j.cat]||CAT.govt).cls}" style="margin-bottom:5px">${(CAT[j.cat]||CAT.govt).label}</span>
+          <div class="sjt" style="margin-top:4px">${j.title}</div>
+          <div class="sjo">${j.org} &nbsp;|&nbsp; ⏰ ${j.deadline}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button class="btn-ap" style="font-size:11.5px;padding:6px 12px" onclick="doApply(${j.id})">Apply</button>
+          <button class="btn-sv" style="font-size:11.5px;padding:6px 10px;${(S.user.saved||[]).includes(j.id)?'color:var(--or);border-color:var(--bd-o)':''}" onclick="doSave(${j.id})">${(S.user.saved||[]).includes(j.id)?'✅':'🔖'}</button>
+        </div>
+      </div>`).join('')}
+  </div>`}
+
+function dashUpdates(){return`
+  <div class="ds">
+    <h3>📢 Latest Updates & News</h3>
+    ${S.news.map(n=>`
+      <div style="display:flex;align-items:flex-start;gap:9px;padding:11px 13px;background:rgba(255,255,255,.03);border-radius:9px;margin-bottom:7px;border:1px solid var(--bd)">
+        <span class="tpill ${n.type==='urgent'?'tp-u':n.type==='new'?'tp-n':'tp-i'}" style="margin-top:2px">${n.type==='urgent'?'🚨 URGENT':n.type==='new'?'🆕 NEW':'ℹ️ INFO'}</span>
+        <span style="font-size:13px;color:var(--mt2);line-height:1.6">${n.text}</span>
+      </div>`).join('')}
+  </div>`}
+
+function dashAge(){return`
+  <div class="age-calc">
+    <h3>🎂 Age Calculator</h3>
+    <p style="font-size:13px;color:var(--mt2);margin-bottom:18px;line-height:1.65">Do dates daalen — birth date aur till date — aur exact age calculate karein saal, mahine aur din mein.</p>
+    <div class="age-grid">
+      <div class="age-inp">
+        <label>Birth Date (Janm Tithi) *</label>
+        <input type="date" id="_ac-bd" max="${new Date().toISOString().slice(0,10)}" oninput="$('age-result').classList.remove('show')"/>
+      </div>
+      <div class="age-inp">
+        <label>Till Date (Aaj tak ya kisi date tak)</label>
+        <input type="date" id="_ac-td" value="${new Date().toISOString().slice(0,10)}"/>
+      </div>
+    </div>
+    <div class="age-err" id="age-err"></div>
+    <button class="age-btn" onclick="calcAge()">🔢 Age Calculate Karein</button>
+    <div class="age-result" id="age-result">
+      <h4>✅ Aapki Age</h4>
+      <div class="age-boxes">
+        <div class="age-box"><div class="age-num" id="ry">0</div><div class="age-lbl">Saal (Years)</div></div>
+        <div class="age-box"><div class="age-num" id="rm">0</div><div class="age-lbl">Mahine (Months)</div></div>
+        <div class="age-box"><div class="age-num" id="rd">0</div><div class="age-lbl">Din (Days)</div></div>
+      </div>
+      <div class="age-detail">
+        <div id="age-sum"></div>
+        <div id="age-extra" style="margin-top:8px;font-size:12.5px"></div>
+      </div>
+    </div>
+  </div>`}
+
+/* ════ AGE CALC FUNCTION ══════════════════════════ */
+function calcAge(){
+  const bd  = ($('_ac-bd')||{}).value;
+  const td  = ($('_ac-td')||{}).value;
+  const res = $('age-result'), err = $('age-err');
+  if(res) res.classList.remove('show');
+  if(err){ err.classList.remove('show'); err.textContent=''; }
+
+  if(!bd){ if(err){err.textContent='⚠️ Birth Date (Janm Tithi) zaroori hai.';err.classList.add('show')} return }
+
+  const birth = new Date(bd);
+  const till  = td ? new Date(td) : new Date();
+  till.setHours(0,0,0,0); birth.setHours(0,0,0,0);
+
+  if(isNaN(birth.getTime())){ if(err){err.textContent='⚠️ Birth Date sahi format mein daalen.';err.classList.add('show')} return }
+  if(birth > till){ if(err){err.textContent='⚠️ Birth Date, Till Date se pehle honi chahiye.';err.classList.add('show')} return }
+
+  let y = till.getFullYear() - birth.getFullYear();
+  let m = till.getMonth()    - birth.getMonth();
+  let d = till.getDate()     - birth.getDate();
+  if(d < 0){ m--; d += new Date(till.getFullYear(), till.getMonth(), 0).getDate(); }
+  if(m < 0){ y--; m += 12; }
+
+  const diffMs   = till - birth;
+  const totalD   = Math.floor(diffMs / 86400000);
+  const totalW   = Math.floor(totalD / 7);
+  const totalH   = Math.floor(diffMs / 3600000);
+  const DOW      = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const MON      = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  let nextBday = new Date(till.getFullYear(), birth.getMonth(), birth.getDate());
+  if(nextBday <= till) nextBday.setFullYear(till.getFullYear()+1);
+  const daysLeft = Math.ceil((nextBday - till)/86400000);
+
+  if($('ry')) $('ry').textContent = y;
+  if($('rm')) $('rm').textContent = m;
+  if($('rd')) $('rd').textContent = d;
+  if($('age-sum')) $('age-sum').innerHTML = `Aapki poori age: <span>${y} Saal, ${m} Mahine, ${d} Din</span>`;
+  if($('age-extra')) $('age-extra').innerHTML =
+    `📅 Kul din: <span>${totalD.toLocaleString('en-IN')}</span> &nbsp;·&nbsp; `+
+    `📅 Kul hafte: <span>${totalW.toLocaleString('en-IN')}</span> &nbsp;·&nbsp; `+
+    `⏰ Kul ghante: <span>${totalH.toLocaleString('en-IN')}</span><br/>`+
+    `🗓️ Birthday tha: <span>${DOW[birth.getDay()]}, ${birth.getDate()} ${MON[birth.getMonth()]} ${birth.getFullYear()}</span><br/>`+
+    `🎉 Agle Birthday mein: <span>${daysLeft} din</span> baaki hain (${nextBday.getDate()} ${MON[nextBday.getMonth()]} ${nextBday.getFullYear()})`;
+  if(res) res.classList.add('show');
+}
+
+/* ════ ACTIONS ══════════════════════════════════════ */
+function toggleMob(){ const m=$('mob'); if(m) m.classList.toggle('open') }
+function openAuth(tab){ S.showAuth=true; S.authTab=tab; rerender() }
+function closeAuth(){ S.showAuth=false; rerender() }
+
+function doLogout(){
+  S.user=null; S.page='home'; LS.set('user',null);
+  toast('Aap logout ho gaye!','inf'); rerender();
+}
+
+function doLogin(){
+  const em = ($('_lem')||{}).value?.trim().toLowerCase();
+  const pw = ($('_lpw')||{}).value?.trim();
+  if(!em||!pw){ setMsg('Email/Mobile aur password dono zaroori hain.'); return }
+  if(em==='admin' && pw==='admin@123'){
+    S.user={role:'admin'}; LS.set('user',S.user);
+    S.showAuth=false; S.page='admin';
+    toast('👑 Admin login successful!','ok'); rerender(); return;
+  }
+  const st=S.students.find(s=>(s.email.toLowerCase()===em||s.phone===em) && s.password===pw);
+  if(st){
+    S.user={...st,role:'student'}; LS.set('user',S.user);
+    S.showAuth=false; S.page='dash';
+    toast(`Welcome back, ${st.name}! 🎉`,'ok'); rerender();
+  } else setMsg('Email/Mobile ya password galat hai. Dobara try karein.');
+}
+
+function doRegister(){
+  const nm = ($('_rnm')||{}).value?.trim();
+  const em = ($('_rem')||{}).value?.trim().toLowerCase();
+  const ph = ($('_rph')||{}).value?.trim();
+  const cr = ($('_rcr')||{}).value?.trim();
+  const pw = ($('_rpw')||{}).value?.trim();
+  if(!nm||!em||!ph||!pw){ setMsg('Naam, Email, Mobile aur Password zaroori hain.'); return }
+  if(!/^\d{10}$/.test(ph)){ setMsg('Sahi 10 digit mobile number daalen.'); return }
+  if(pw.length<6){ setMsg('Password minimum 6 characters ka hona chahiye.'); return }
+  if(!/\S+@\S+\.\S+/.test(em)){ setMsg('Valid email address daalen.'); return }
+  if(S.students.find(s=>s.email===em)){ setMsg('Is email se pehle se account hai. Login karein.'); return }
+  if(S.students.find(s=>s.phone===ph)){ setMsg('Is mobile number se pehle se account hai.'); return }
+  const ns={id:S.nextStu++,name:nm,email:em,phone:ph,course:cr,password:pw,
+             joined:new Date().toISOString().slice(0,10),saved:[]};
+  S.students.push(ns);
+  S.user={...ns,role:'student'}; LS.set('user',S.user);
+  S.showAuth=false; S.page='dash'; S.dashTab='profile';
+  saveData();
+  toast(`Welcome, ${nm}! Account ban gaya 🎉`,'ok'); rerender();
+}
+
+async function addJob(){
+  const ti = ($('_ajt')||{}).value?.trim();
+  const or = ($('_ajo')||{}).value?.trim();
+  if(!ti||!or){ toast('Job Title aur Organisation zaroori hain!','er'); return }
+  const draft = {
+    title:ti, org:or,
+    cat:($('_ajc')||{}).value||'govt',
+    edu:($('_aje')||{}).value?.trim()||'N/A',
+    loc:($('_ajl')||{}).value?.trim()||'N/A',
+    sal:($('_ajs')||{}).value?.trim()||'N/A',
+    deadline:($('_ajd')||{}).value?.trim()||'Open',
+    link:($('_ajlk')||{}).value?.trim()||'',
+  };
+  try{
+    await apiFetch('/api/jobs',{method:'POST',body:JSON.stringify(draft)});
+    await syncRemoteContent({silent:true});
+    toast('Job globally post ho gaya!','ok');
+  }catch{
+    S.jobs.unshift({id:S.nextJob++,...draft});
+    saveData();
+    toast('Server unavailable tha, isliye job sirf isi browser me save hua. Global save ke liye backend chalu rakhein.','inf');
+  }
+  rerender();
+  return;
+  S.jobs.unshift({
+    id:S.nextJob++,
+    title:ti, org:or,
+    cat:($('_ajc')||{}).value||'govt',
+    edu:($('_aje')||{}).value?.trim()||'—',
+    loc:($('_ajl')||{}).value?.trim()||'—',
+    sal:($('_ajs')||{}).value?.trim()||'—',
+    deadline:($('_ajd')||{}).value?.trim()||'Open',
+    link:($('_ajlk')||{}).value?.trim()||'',
+  });
+  saveData(); toast('✅ Job successfully post ho gaya!','ok'); rerender();
+}
+
+async function delJob(id){
+  if(!confirm('Is job ko delete karein? Yeh action undo nahi hoga.')) return;
+  try{
+    await apiFetch(`/api/jobs?id=${encodeURIComponent(id)}`,{method:'DELETE'});
+    S.students.forEach(s=>{if(s.saved)s.saved=s.saved.filter(x=>x!==id)});
+    if(S.user?.role==='student' && S.user.saved) S.user.saved=S.user.saved.filter(x=>x!==id);
+    await syncRemoteContent({silent:true});
+    saveData();
+    toast('Job globally delete ho gaya.','inf');
+  }catch{
+    S.jobs=S.jobs.filter(j=>j.id!==id);
+    S.students.forEach(s=>{if(s.saved)s.saved=s.saved.filter(x=>x!==id)});
+    if(S.user?.role==='student' && S.user.saved) S.user.saved=S.user.saved.filter(x=>x!==id);
+    saveData();
+    toast('Server unavailable tha, isliye delete sirf local browser me hua.','inf');
+  }
+  rerender();
+  return;
+  S.jobs=S.jobs.filter(j=>j.id!==id);
+  /* also remove from students' saved lists */
+  S.students.forEach(s=>{if(s.saved)s.saved=s.saved.filter(x=>x!==id)});
+  if(S.user?.role==='student' && S.user.saved) S.user.saved=S.user.saved.filter(x=>x!==id);
+  saveData(); toast('Job delete ho gaya.','inf'); rerender();
+}
+
+async function addNews(){
+  const tx = ($('_ant')||{}).value?.trim();
+  const ty = ($('_any')||{}).value||'new';
+  if(!tx){ toast('News text daalen!','er'); return }
+  try{
+    await apiFetch('/api/news',{method:'POST',body:JSON.stringify({text:tx,type:ty})});
+    await syncRemoteContent({silent:true});
+    toast('News ticker globally update ho gaya!','ok');
+  }catch{
+    S.news.push({id:S.nextNews++, text:tx, type:ty});
+    saveData();
+    toast('Server unavailable tha, isliye news sirf isi browser me save hui.','inf');
+  }
+  rerender();
+  return;
+  S.news.push({id:S.nextNews++, text:tx, type:ty});
+  saveData(); toast('✅ News ticker mein add ho gaya!','ok'); rerender();
+}
+
+async function delNews(id){
+  try{
+    await apiFetch(`/api/news?id=${encodeURIComponent(id)}`,{method:'DELETE'});
+    await syncRemoteContent({silent:true});
+    toast('News globally delete ho gaya.','inf');
+  }catch{
+    S.news=S.news.filter(n=>n.id!==id);
+    saveData();
+    toast('Server unavailable tha, isliye news delete sirf local browser me hua.','inf');
+  }
+  rerender();
+  return;
+  S.news=S.news.filter(n=>n.id!==id);
+  saveData(); toast('News delete ho gaya.','inf'); rerender();
+}
+
+function delStudent(id){
+  if(id===1){toast('Demo student delete nahi ho sakta.','er');return}
+  if(!confirm('Is student ka account delete karein?')) return;
+  S.students=S.students.filter(s=>s.id!==id);
+  saveData(); toast('Student delete ho gaya.','inf'); rerender();
+}
+
+function doApply(id){
+  if(!S.user){ toast('Apply karne ke liye pehle login karein!','er'); openAuth('login'); return }
+  const j=S.jobs.find(x=>x.id===id);
+  if(j?.link){ window.open(j.link,'_blank'); }
+  else toast('Hamse contact karein — 📞 8935897611 — form bharne mein puri help milegi!','inf');
+}
+
+function doSave(id){
+  if(!S.user||S.user.role!=='student'){ toast('Jobs save karne ke liye pehle login karein!','er'); openAuth('login'); return }
+  const st=S.students.find(s=>s.id===S.user.id);
+  if(!st) return;
+  if(!st.saved) st.saved=[];
+  if(st.saved.includes(id)){ toast('Ye job pehle se saved hai!','inf'); return }
+  st.saved.push(id);
+  S.user={...st,role:'student'}; LS.set('user',S.user);
+  saveData(); toast('✅ Job saved! Dashboard → Saved Jobs mein dekhen.','ok');
+  /* just update the button without full rerender */
+  document.querySelectorAll('.btn-sv').forEach(btn=>{
+    if(btn.getAttribute('onclick')===`doSave(${id})`){
+      btn.textContent='✅ Saved'; btn.style.color='var(--or)'; btn.style.borderColor='var(--bd-o)';
+    }
+  });
+}
+
+function removeSaved(id){
+  const st=S.students.find(s=>s.id===S.user.id);
+  if(!st) return;
+  st.saved=(st.saved||[]).filter(x=>x!==id);
+  S.user={...st,role:'student'}; LS.set('user',S.user);
+  saveData(); toast('Job removed from saved.','inf'); rerender();
+}
+
+function doSub(){
+  const ph=($('_sub-ph')||{}).value?.trim();
+  if(/^\d{10}$/.test(ph)){
+    toast(`🎉 ${ph} par Job Alerts subscribe ho gaya!`,'ok');
+    const el=$('_sub-ph'); if(el) el.value='';
+  } else toast('⚠️ Sahi 10 digit mobile number daalen.','er');
+}
+
+function doContact(){
+  const nm=($('_cn')||{}).value?.trim();
+  const cn=($('_cc')||{}).value?.trim();
+  if(!nm||!cn){ toast('Naam aur contact zaroori hai.','er'); return }
+  toast('✅ Message received! Hum jald sampark karenge. 📞 8935897611','ok');
+  ['_cn','_cc','_cm'].forEach(id=>{const e=$(id);if(e)e.value=''});
+}
+
+/* ─── INIT ─── */
+async function startApp(){
+  rerender();
+  await syncRemoteContent({silent:true});
+  startLiveSync();
+}
+startApp();
+</script>
+</body>
+</html>
