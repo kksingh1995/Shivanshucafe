@@ -5,6 +5,8 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python sqlite_center_backend.py
     envVars:
+      - key: DATABASE_URL
+        value: postgresql://shivanshu_cafe_user:nqLJ8tBkD273LbTv9rRQ1iva2Ncc70sq@dpg-d7pkutpj2pic73brctq0-a/shivanshu_cafe
       - key: DATA_DIR
         value: /opt/render/project/src/data
       - key: DB_PATH

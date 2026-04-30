@@ -695,6 +695,7 @@ async function syncStorageHealth(){
     const info = await apiFetch('/api/health');
     S.storage = {
       checked:true,
+      kind:info.db_kind || '',
       persistent_disk:!!info.persistent_disk,
       database:info.database || '',
       data_dir:info.data_dir || '',
@@ -706,6 +707,7 @@ async function syncStorageHealth(){
   }catch{
     S.storage = {
       checked:true,
+      kind:'',
       persistent_disk:false,
       database:'',
       data_dir:'',
@@ -731,7 +733,7 @@ const S = {
   user: LS.get('user') || null,
   filter:'all', adminTab:'overview', dashTab:'profile',
   jobEditor:null,
-  storage:{checked:false,persistent_disk:false,database:'',data_dir:'',backup:'',db_size:0},
+  storage:{checked:false,kind:'',persistent_disk:false,database:'',data_dir:'',backup:'',db_size:0},
   ...loadData(),
   remote:{enabled:false,synced:false,error:'',lastSync:0},
 };
@@ -1179,12 +1181,14 @@ function setMsg(msg,ok=false){const e=$('amsg');if(e)e.innerHTML=`<div class="em
 /* ════ ADMIN ════════════════════════════════════════ */
 function buildAdmin(){
   const t=S.adminTab;
-  const storageOk = !!S.storage?.checked && !!S.storage?.persistent_disk;
+  const storageOk = !!S.storage?.checked && (S.storage?.kind === 'postgres' || !!S.storage?.persistent_disk);
   const storageMsg = !S.storage?.checked
     ? 'Storage status checking...'
-    : storageOk
-      ? `Persistent Render disk active${S.storage.db_size ? ` (${Math.round(S.storage.db_size/1024)} KB)` : ''}`
-      : 'Warning: storage is not confirmed persistent';
+    : S.storage?.kind === 'postgres'
+      ? `PostgreSQL connected${S.storage.database ? ` (${S.storage.database})` : ''}`
+      : storageOk
+        ? `Persistent Render disk active${S.storage.db_size ? ` (${Math.round(S.storage.db_size/1024)} KB)` : ''}`
+        : 'Warning: storage is not confirmed persistent';
   const storageColor = storageOk ? '#73f0a8' : '#ff8a80';
   return`
 <nav><div class="nv">

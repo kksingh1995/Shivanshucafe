@@ -1,1 +1,1 @@
-# This project currently uses Python's standard library only.
+psycopg2-binary>=2.9
