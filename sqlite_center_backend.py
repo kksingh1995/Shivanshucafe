@@ -1,6 +1,7 @@
 import json
 import hashlib
 import os
+import shutil
 import sqlite3
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -10,9 +11,23 @@ from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parent
 SCHEMA_PATH = ROOT / "sqlite_schema.sql"
-DATA_DIR = Path(os.getenv("DATA_DIR", str(ROOT)))
+DEFAULT_RENDER_DATA_DIR = Path("/opt/render/project/src/data")
+
+
+def resolve_data_dir():
+    explicit = os.getenv("DATA_DIR")
+    if explicit:
+        return Path(explicit)
+    if os.getenv("RENDER") or os.getenv("RENDER_SERVICE_ID"):
+        return DEFAULT_RENDER_DATA_DIR
+    return ROOT
+
+
+DATA_DIR = resolve_data_dir()
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 DB_PATH = Path(os.getenv("DB_PATH", str(DATA_DIR / "audicare_center.db")))
+LEGACY_DB_PATH = ROOT / "audicare_center.db"
+BACKUP_DB_PATH = DATA_DIR / "audicare_center.backup.db"
 DEFAULT_ADMIN_EMAIL = "admin"
 DEFAULT_ADMIN_MOBILE = "9999999999"
 DEFAULT_ADMIN_PASSWORD = "admin@123"
@@ -33,6 +48,9 @@ def get_db():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = dict_factory
     conn.execute("PRAGMA foreign_keys = ON;")
+    conn.execute("PRAGMA journal_mode = WAL;")
+    conn.execute("PRAGMA synchronous = FULL;")
+    conn.execute("PRAGMA busy_timeout = 5000;")
     return conn
 
 
@@ -52,6 +70,38 @@ def table_columns(conn, table):
 def ensure_column(conn, table, name, ddl):
     if name not in table_columns(conn, table):
         conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {ddl}")
+
+
+def bootstrap_db_files():
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    if DB_PATH.exists() and DB_PATH.stat().st_size > 0:
+        return
+    for candidate in (LEGACY_DB_PATH, BACKUP_DB_PATH):
+        if candidate.exists() and candidate.stat().st_size > 0:
+            shutil.copy2(candidate, DB_PATH)
+            return
+
+
+def backup_db(conn):
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    tmp_path = BACKUP_DB_PATH.with_suffix(".tmp")
+    if tmp_path.exists():
+        tmp_path.unlink()
+    backup_conn = sqlite3.connect(tmp_path)
+    try:
+        conn.backup(backup_conn)
+        backup_conn.commit()
+    finally:
+        backup_conn.close()
+    tmp_path.replace(BACKUP_DB_PATH)
+
+
+def commit_db(conn):
+    conn.commit()
+    try:
+        backup_db(conn)
+    except Exception as exc:
+        print(f"Backup warning: {exc}")
 
 
 def migrate_db(conn):
@@ -108,11 +158,12 @@ def migrate_db(conn):
 
 
 def init_db():
+    bootstrap_db_files()
     conn = get_db()
     try:
         conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
         migrate_db(conn)
-        conn.commit()
+        commit_db(conn)
     finally:
         conn.close()
 
@@ -257,7 +308,16 @@ class PTAHandler(SimpleHTTPRequestHandler):
         parsed = urlparse(self.path)
         qs = parse_qs(parsed.query)
         if parsed.path == "/api/health":
-            return self._json({"ok": True, "database": str(DB_PATH)})
+            return self._json({
+                "ok": True,
+                "database": str(DB_PATH),
+                "data_dir": str(DATA_DIR),
+                "backup": str(BACKUP_DB_PATH),
+                "db_exists": DB_PATH.exists(),
+                "db_size": DB_PATH.stat().st_size if DB_PATH.exists() else 0,
+                "legacy_db_exists": LEGACY_DB_PATH.exists(),
+                "persistent_disk": str(DB_PATH).startswith(str(DEFAULT_RENDER_DATA_DIR)),
+            })
         if parsed.path == "/api/site-content":
             include_all = qs.get("all", ["0"])[0] == "1"
             conn = get_db()
@@ -341,7 +401,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                     ),
                 )
                 row = conn.execute("SELECT * FROM jobs WHERE id = ?", (cursor.lastrowid,)).fetchone()
-                conn.commit()
+                commit_db(conn)
                 return self._json(job_payload(row), 201)
             if parsed.path == "/api/news":
                 cursor = conn.execute(
@@ -353,7 +413,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                     ),
                 )
                 row = conn.execute("SELECT * FROM news_items WHERE id = ?", (cursor.lastrowid,)).fetchone()
-                conn.commit()
+                commit_db(conn)
                 return self._json(news_payload(row), 201)
             if parsed.path in {"/api/auth/register", "/api/students"}:
                 name = (payload.get("name") or payload.get("full_name") or "").strip()
@@ -379,7 +439,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                     ),
                 )
                 row = conn.execute("SELECT * FROM site_users WHERE id = ?", (cursor.lastrowid,)).fetchone()
-                conn.commit()
+                commit_db(conn)
                 return self._json(user_payload(row, conn), 201)
             if parsed.path == "/api/auth/login":
                 identifier = (payload.get("identifier") or payload.get("email") or payload.get("mobile") or "").strip()
@@ -399,7 +459,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                     "INSERT OR IGNORE INTO site_saved_jobs (student_id, job_id) VALUES (?, ?)",
                     (int(student_id), int(job_id)),
                 )
-                conn.commit()
+                commit_db(conn)
                 row = conn.execute("SELECT * FROM site_users WHERE id = ? AND role = 'student'", (int(student_id),)).fetchone()
                 return self._json(user_payload(row, conn))
             if parsed.path == "/api/centers":
@@ -413,7 +473,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                         payload.get("contact"),
                     ),
                 )
-                conn.commit()
+                commit_db(conn)
                 return self._json({"id": cursor.lastrowid, "ok": True}, 201)
             if parsed.path == "/api/users":
                 cursor = conn.execute(
@@ -432,7 +492,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                         payload.get("center_id"),
                     ),
                 )
-                conn.commit()
+                commit_db(conn)
                 return self._json({"id": cursor.lastrowid, "ok": True}, 201)
             if parsed.path == "/api/children":
                 cursor = conn.execute(
@@ -457,7 +517,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                         payload.get("center_id"),
                     ),
                 )
-                conn.commit()
+                commit_db(conn)
                 return self._json({"id": cursor.lastrowid, "ok": True}, 201)
             if parsed.path == "/api/tests":
                 cursor = conn.execute(
@@ -494,7 +554,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                             "INSERT OR REPLACE INTO thresholds (test_ref, ear, frequency_hz, threshold_dbhl) VALUES (?, ?, ?, ?)",
                             (test_pk, ear_key, int(freq), str(value)),
                         )
-                conn.commit()
+                commit_db(conn)
                 return self._json({"id": test_pk, "ok": True}, 201)
             if parsed.path == "/api/reports":
                 cursor = conn.execute(
@@ -518,7 +578,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                         payload.get("status", "verified"),
                     ),
                 )
-                conn.commit()
+                commit_db(conn)
                 return self._json({"id": cursor.lastrowid, "ok": True}, 201)
             return self._json({"error": "Unsupported endpoint"}, 404)
         except sqlite3.IntegrityError as exc:
@@ -575,7 +635,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                         int(job_id),
                     ),
                 )
-                conn.commit()
+                commit_db(conn)
                 updated = conn.execute("SELECT * FROM jobs WHERE id = ?", (int(job_id),)).fetchone()
                 return self._json(job_payload(updated))
             if parsed.path == "/api/students":
@@ -600,7 +660,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                 params.append(now_iso())
                 params.append(int(student_id))
                 conn.execute(f"UPDATE site_users SET {', '.join(updates)} WHERE id = ?", params)
-                conn.commit()
+                commit_db(conn)
                 updated = conn.execute("SELECT * FROM site_users WHERE id = ?", (int(student_id),)).fetchone()
                 return self._json(user_payload(updated, conn))
             return self._json({"error": "Unsupported endpoint"}, 404)
@@ -620,21 +680,21 @@ class PTAHandler(SimpleHTTPRequestHandler):
                 if not row_id.isdigit():
                     return self._json({"error": "Valid id is required"}, 400)
                 deleted = conn.execute("DELETE FROM jobs WHERE id = ?", (int(row_id),)).rowcount
-                conn.commit()
+                commit_db(conn)
                 return self._json({"ok": deleted > 0, "deleted": deleted})
             if parsed.path == "/api/news":
                 row_id = qs.get("id", [""])[0]
                 if not row_id.isdigit():
                     return self._json({"error": "Valid id is required"}, 400)
                 deleted = conn.execute("DELETE FROM news_items WHERE id = ?", (int(row_id),)).rowcount
-                conn.commit()
+                commit_db(conn)
                 return self._json({"ok": deleted > 0, "deleted": deleted})
             if parsed.path == "/api/students":
                 row_id = qs.get("id", [""])[0]
                 if not row_id.isdigit():
                     return self._json({"error": "Valid id is required"}, 400)
                 deleted = conn.execute("DELETE FROM site_users WHERE id = ? AND role = 'student'", (int(row_id),)).rowcount
-                conn.commit()
+                commit_db(conn)
                 return self._json({"ok": deleted > 0, "deleted": deleted})
             if parsed.path == "/api/saved-jobs":
                 student_id = qs.get("student_id", [""])[0]
@@ -645,7 +705,7 @@ class PTAHandler(SimpleHTTPRequestHandler):
                     "DELETE FROM site_saved_jobs WHERE student_id = ? AND job_id = ?",
                     (int(student_id), int(job_id)),
                 ).rowcount
-                conn.commit()
+                commit_db(conn)
                 return self._json({"ok": deleted > 0, "deleted": deleted})
             return self._json({"error": "Unsupported endpoint"}, 404)
         finally:

@@ -403,12 +403,22 @@ footer{background:var(--bg1);border-top:1px solid var(--bd)}
   .lk-g{grid-template-columns:repeat(2,1fr)}
   .ft{grid-template-columns:1fr}
   .ft-bot,.adm-hdr,.dsh-hdr,.jab{flex-direction:column;text-align:center}
+  section{padding:68px 16px}
+  .nv{padding:0 14px;height:62px}
   .prc.pop{transform:scale(1)}.prc.pop:hover{transform:translateY(-6px)}
   .st-cs{grid-template-columns:repeat(2,1fr)}
   .adm-wrap,.dsh-wrap{padding:14px 10px}
   .afg{grid-template-columns:1fr}
   .hc{padding:70px 18px 50px}
-  .h-card{display:none}
+  .h-card{display:block;max-width:560px;margin:18px auto 0;padding:20px}
+  .h-ttl,.h-sub,.jab h3,.jab p,.ctf h3,.ct-info h3,.shd{text-align:center}
+  .hbtns,.qa-g,.cta-btns,.nv-r,.ft-s{justify-content:center}
+  .jab{padding:20px 16px}
+  .sf{display:grid;grid-template-columns:1fr;width:100%}
+  .sf input,.sf button{width:100%}
+  .jfil{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}
+  .fb{white-space:nowrap}
+  .jcard,.wc,.sc2,.prc,.ctf,.age-calc,.ds,.dprof{padding:18px}
   .age-boxes{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:480px){
@@ -680,6 +690,33 @@ async function syncRemoteContent(opts={}){
   }
 }
 
+async function syncStorageHealth(){
+  try{
+    const info = await apiFetch('/api/health');
+    S.storage = {
+      checked:true,
+      persistent_disk:!!info.persistent_disk,
+      database:info.database || '',
+      data_dir:info.data_dir || '',
+      backup:info.backup || '',
+      db_exists:!!info.db_exists,
+      db_size:Number(info.db_size)||0,
+    };
+    return info;
+  }catch{
+    S.storage = {
+      checked:true,
+      persistent_disk:false,
+      database:'',
+      data_dir:'',
+      backup:'',
+      db_exists:false,
+      db_size:0,
+    };
+    return null;
+  }
+}
+
 let _syncTimer = null;
 function startLiveSync(){
   if(_syncTimer) return;
@@ -694,6 +731,7 @@ const S = {
   user: LS.get('user') || null,
   filter:'all', adminTab:'overview', dashTab:'profile',
   jobEditor:null,
+  storage:{checked:false,persistent_disk:false,database:'',data_dir:'',backup:'',db_size:0},
   ...loadData(),
   remote:{enabled:false,synced:false,error:'',lastSync:0},
 };
@@ -1141,6 +1179,13 @@ function setMsg(msg,ok=false){const e=$('amsg');if(e)e.innerHTML=`<div class="em
 /* ════ ADMIN ════════════════════════════════════════ */
 function buildAdmin(){
   const t=S.adminTab;
+  const storageOk = !!S.storage?.checked && !!S.storage?.persistent_disk;
+  const storageMsg = !S.storage?.checked
+    ? 'Storage status checking...'
+    : storageOk
+      ? `Persistent Render disk active${S.storage.db_size ? ` (${Math.round(S.storage.db_size/1024)} KB)` : ''}`
+      : 'Warning: storage is not confirmed persistent';
+  const storageColor = storageOk ? '#73f0a8' : '#ff8a80';
   return`
 <nav><div class="nv">
   <div class="logo" onclick="S.page='home';rerender()">
@@ -1158,7 +1203,10 @@ function buildAdmin(){
     <div><h2>🛠️ Admin Panel – Shivanshu Cafe</h2><p>Jobs post karein · News ticker control karein · Students manage karein</p></div>
     <button class="nb nb-o" onclick="S.page='home';rerender()">🌐 Live Website Dekhein</button>
   </div>
-  <p style="font-size:12px;color:${S.remote.enabled?'#73f0a8':'#ff8a80'};margin:6px 0 14px 0">${S.remote.enabled?'Global live sync active - domain par sab jagah same jobs/news dikhengi.':'Abhi local-only mode hai - global sync ke liye backend API/server chalu rakhein.'}</p>
+  <p style="font-size:12px;color:${S.remote.enabled?'#73f0a8':'#ff8a80'};margin:6px 0 14px 0">
+    ${S.remote.enabled?'Global live sync active - domain par sab jagah same jobs/news dikhengi.':'Abhi local-only mode hai - global sync ke liye backend API/server chalu rakhein.'}
+    <br/><span style="color:${storageColor};font-weight:700">${storageMsg}</span>
+  </p>
   <div class="adm-tabs">
     <button class="atab2 ${t==='overview'?'act':''}" onclick="S.adminTab='overview';rerender()">📊 Overview</button>
     <button class="atab2 ${t==='jobs'?'act':''}" onclick="S.adminTab='jobs';rerender()">💼 Jobs Manage</button>
@@ -1948,6 +1996,7 @@ function dashAlerts(){return`
   </div>`}
 
 async function startApp(){
+  await syncStorageHealth();
   rerender();
   await syncRemoteContent({silent:true});
   startLiveSync();

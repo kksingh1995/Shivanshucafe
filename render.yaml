@@ -7,6 +7,8 @@ services:
     envVars:
       - key: DATA_DIR
         value: /opt/render/project/src/data
+      - key: DB_PATH
+        value: /opt/render/project/src/data/audicare_center.db
     disk:
       name: app-data
       mountPath: /opt/render/project/src/data
