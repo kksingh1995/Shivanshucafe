@@ -301,6 +301,8 @@ footer{background:var(--bg1);border-top:1px solid var(--bd)}
 .abtn.del{background:rgba(255,82,82,.1);color:#ff8a80;border:1px solid rgba(255,82,82,.2);box-shadow:none;padding:6px 13px;font-size:11.5px}
 .abtn.del:hover{background:rgba(255,82,82,.2)}
 .abtn.sm{padding:7px 14px;font-size:12px}
+.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-scroll .atbl{min-width:860px}
 .atbl{width:100%;border-collapse:collapse}
 .atbl th{background:rgba(255,255,255,.04);padding:10px 12px;text-align:left;font-size:11px;font-weight:700;color:var(--mt2);border-bottom:1px solid var(--bd);text-transform:uppercase;letter-spacing:.5px}
 .atbl td{padding:10px 12px;font-size:12.5px;color:var(--mt2);border-bottom:1px solid var(--bd);vertical-align:middle}
@@ -560,6 +562,9 @@ async function apiFetch(path, opts={}){
 }
 
 function normalizeJob(job){
+  const status = ['draft', 'published'].includes(job?.status) ? job.status : 'published';
+  const postDate = job?.post_date || (job?.created_at || '').slice(0, 10) || '';
+  const applyDate = job?.apply_date || job?.deadline || 'Open';
   return {
     id:Number(job?.id)||0,
     title:job?.title||'',
@@ -568,8 +573,13 @@ function normalizeJob(job){
     edu:job?.edu||'N/A',
     loc:job?.loc||'N/A',
     sal:job?.sal||'N/A',
-    deadline:job?.deadline||'Open',
+    status,
+    post_date:postDate,
+    apply_date:applyDate,
+    deadline:applyDate,
     link:job?.link||'',
+    created_at:job?.created_at||'',
+    updated_at:job?.updated_at||'',
   };
 }
 
@@ -582,6 +592,42 @@ function normalizeNews(item){
   };
 }
 
+function normalizeStudent(item){
+  const saved = Array.isArray(item?.saved_job_ids)
+    ? item.saved_job_ids.map(Number).filter(Number.isFinite)
+    : Array.isArray(item?.saved)
+      ? item.saved.map(Number).filter(Number.isFinite)
+      : [];
+  return {
+    id:Number(item?.id)||0,
+    role:item?.role||'student',
+    name:item?.name||'',
+    email:item?.email||'',
+    phone:item?.mobile||item?.phone||'',
+    course:item?.course||'',
+    joined:item?.created_at?.slice(0,10)||item?.joined||'',
+    saved,
+    saved_job_ids:saved,
+    saved_count:saved.length,
+  };
+}
+
+function normalizeUser(item){
+  if(!item) return null;
+  if(item.role === 'student') return normalizeStudent(item);
+  return {
+    id:Number(item?.id)||0,
+    role:item?.role||'admin',
+    name:item?.name||'',
+    email:item?.email||'',
+    mobile:item?.mobile||'',
+    course:item?.course||'',
+    saved:[],
+    saved_job_ids:[],
+    saved_count:0,
+  };
+}
+
 function applyRemoteContent(payload){
   if(Array.isArray(payload?.jobs)){
     S.jobs = payload.jobs.map(normalizeJob);
@@ -590,6 +636,10 @@ function applyRemoteContent(payload){
   if(Array.isArray(payload?.news)){
     S.news = payload.news.map(normalizeNews);
     S.nextNews = Math.max(0, ...S.news.map(n=>Number(n.id)||0)) + 1;
+  }
+  if(Array.isArray(payload?.students)){
+    S.students = payload.students.map(normalizeStudent);
+    S.nextStu = Math.max(0, ...S.students.map(s=>Number(s.id)||0)) + 1;
   }
   S.remote.enabled = true;
   S.remote.synced = true;
@@ -601,17 +651,25 @@ function applyRemoteContent(payload){
 function canAutoRefresh(){
   const tag = String(document.activeElement?.tagName||'').toUpperCase();
   return !S.showAuth
+    && !S.jobEditor
     && !(S.page==='admin' && S.user?.role==='admin')
     && !['INPUT','TEXTAREA','SELECT'].includes(tag);
 }
 
 async function syncRemoteContent(opts={}){
   const silent = opts.silent!==false;
+  const includeAll = opts.all ?? (S.page==='admin' || S.user?.role==='admin');
   try{
-    const before = JSON.stringify({jobs:S.jobs,news:S.news});
-    const data = await apiFetch('/api/site-content');
+    const snapshot = includeAll
+      ? {jobs:S.jobs,news:S.news,students:S.students}
+      : {jobs:S.jobs,news:S.news};
+    const before = JSON.stringify(snapshot);
+    const data = await apiFetch(`/api/site-content${includeAll ? '?all=1' : ''}`);
     applyRemoteContent(data);
-    const changed = before!==JSON.stringify({jobs:S.jobs,news:S.news});
+    const after = includeAll
+      ? {jobs:S.jobs,news:S.news,students:S.students}
+      : {jobs:S.jobs,news:S.news};
+    const changed = before!==JSON.stringify(after);
     if(changed && canAutoRefresh()) rerender();
     return true;
   }catch(err){
@@ -635,6 +693,7 @@ const S = {
   page:'home', showAuth:false, authTab:'login',
   user: LS.get('user') || null,
   filter:'all', adminTab:'overview', dashTab:'profile',
+  jobEditor:null,
   ...loadData(),
   remote:{enabled:false,synced:false,error:'',lastSync:0},
 };
@@ -652,6 +711,10 @@ const CAT = {
   defence: {label:'🪖 Police/Defence',cls:'bg-d'},
   private: {label:'🏢 Private',    cls:'bg-p'},
 };
+CAT.admission  = {label:'🎓 Admission',  cls:'bg-g'};
+CAT.admitcard  = {label:'📄 Admit Card', cls:'bg-r'};
+CAT.result     = {label:'📢 Result',     cls:'bg-b'};
+CAT.answerkey  = {label:'✅ Answer Key',  cls:'bg-d'};
 const SERVICES=[
   ["🖨️","#1a2a3a","Printing & Scanning","High-quality B&W / color printing, scanning, photocopying."],
   ["💻","#1a2e1a","Computer Access","High-performance computers with fast internet."],
@@ -688,6 +751,12 @@ const LINKS=[
 /* ═══ UTILS ════════════════════════════════════════ */
 const $ = id => document.getElementById(id);
 const val = id => ($('_'+id)||{}).value?.trim()||'';
+const esc = v => String(v ?? '')
+  .replace(/&/g,'&amp;')
+  .replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;');
+const dateVal = v => /^\d{4}-\d{2}-\d{2}$/.test(String(v||'')) ? String(v) : '';
 
 let _tt;
 function toast(msg, type='ok'){
@@ -768,7 +837,7 @@ function buildPage(){
 /* ════ HOME ════════════════════════════════════════ */
 function buildHome(){
   const nt = [...S.news,...S.news].map(n=>`<span>${n.text}</span>`).join('');
-  const jList = S.jobs.filter(j=>S.filter==='all'||j.cat===S.filter);
+  const jList = S.jobs.filter(j=>(j.status||'published')!=='draft' && (S.filter==='all'||j.cat===S.filter));
   return `
 <!-- TICKER -->
 <div class="ticker"><div class="t-in">
@@ -1031,8 +1100,8 @@ function jobCard(j){
     <span class="jbadge ${m.cls}">${m.label}</span>
     <div class="jt2">${j.title}</div>
     <div class="jorg">🏢 ${j.org}</div>
-    <div class="jmeta"><span class="jtg">📚 ${j.edu}</span><span class="jtg">📍 ${j.loc}</span><span class="jtg">💰 ${j.sal}</span></div>
-    <div class="jdl">⏰ Last Date: ${j.deadline}</div>
+    <div class="jmeta"><span class="jtg">📚 ${j.edu}</span><span class="jtg">📍 ${j.loc}</span><span class="jtg">💰 ${j.sal}</span><span class="jtg">🗓️ Post: ${j.post_date||'—'}</span><span class="jtg">⏰ Apply: ${j.apply_date||j.deadline||'Open'}</span></div>
+    <div class="jdl">स्थिति: ${(j.status||'published').toUpperCase()}</div>
     <div class="jacts">
       <button class="btn-ap" onclick="doApply(${j.id})">Apply Karein</button>
       <button class="btn-sv" onclick="doSave(${j.id})" style="${isSaved?'color:var(--or);border-color:var(--bd-o)':''}">${isSaved?'✅ Saved':'🔖 Save'}</button>
@@ -1105,53 +1174,84 @@ function adminOv(){
   return`
   <div class="st-cs">
     <div class="stc"><div class="stc-n">${S.jobs.length}</div><div class="stc-l">Total Jobs</div></div>
+    <div class="stc"><div class="stc-n">${S.jobs.filter(j=>(j.status||'published')==='published').length}</div><div class="stc-l">Published Jobs</div></div>
+    <div class="stc"><div class="stc-n">${S.jobs.filter(j=>(j.status||'published')==='draft').length}</div><div class="stc-l">Draft Jobs</div></div>
     <div class="stc"><div class="stc-n">${S.students.length}</div><div class="stc-l">Registered Students</div></div>
-    <div class="stc"><div class="stc-n">${S.news.length}</div><div class="stc-l">News Items</div></div>
-    <div class="stc"><div class="stc-n">${S.jobs.filter(j=>j.deadline!=='Open').length}</div><div class="stc-l">Active Jobs</div></div>
   </div>
   <div class="adm-sec">
     <h3>📊 Category-wise Jobs</h3>
-    <table class="atbl"><thead><tr><th>Category</th><th>Total Jobs</th><th>Action</th></tr></thead><tbody>
-    ${cats.map(k=>`<tr><td><span class="jbadge ${CAT[k].cls}">${CAT[k].label}</span></td><td>${S.jobs.filter(j=>j.cat===k).length}</td><td><button class="abtn sm" onclick="S.adminTab='jobs';rerender()">Manage</button></td></tr>`).join('')}
-    </tbody></table>
+    <div class="table-scroll">
+      <table class="atbl"><thead><tr><th>Category</th><th>Total Jobs</th><th>Action</th></tr></thead><tbody>
+      ${cats.map(k=>`<tr><td><span class="jbadge ${CAT[k].cls}">${CAT[k].label}</span></td><td>${S.jobs.filter(j=>j.cat===k).length}</td><td><button class="abtn sm" onclick="S.adminTab='jobs';rerender()">Manage</button></td></tr>`).join('')}
+      </tbody></table>
+    </div>
   </div>
   <div class="adm-sec">
     <h3>📋 Recent Jobs (Latest 5)</h3>
-    <table class="atbl"><thead><tr><th>Title</th><th>Category</th><th>Organisation</th><th>Last Date</th></tr></thead>
-    <tbody>${S.jobs.slice(0,5).map(j=>`<tr><td style="max-width:240px;font-size:12px">${j.title}</td><td><span class="jbadge ${(CAT[j.cat]||CAT.govt).cls}">${j.cat}</span></td><td style="font-size:12px">${j.org}</td><td style="font-size:12px;color:#ff8a65">${j.deadline}</td></tr>`).join('')}</tbody>
-    </table>
+    <div class="table-scroll">
+      <table class="atbl"><thead><tr><th>Title</th><th>Status</th><th>Category</th><th>Post Date</th><th>Apply Date</th></tr></thead>
+      <tbody>${S.jobs.slice(0,5).map(j=>`<tr><td style="max-width:240px;font-size:12px">${j.title}</td><td><span class="tpill ${(j.status||'published')==='draft'?'tp-u':'tp-i'}">${(j.status||'published').toUpperCase()}</span></td><td><span class="jbadge ${(CAT[j.cat]||CAT.govt).cls}">${(CAT[j.cat]||CAT.govt).label}</span></td><td style="font-size:12px">${j.post_date||'—'}</td><td style="font-size:12px;color:#ff8a65">${j.apply_date||j.deadline||'Open'}</td></tr>`).join('')}</tbody>
+      </table>
+    </div>
   </div>`;
 }
 
 function adminJobs(){
+  const edit = S.jobEditor || {};
+  const isEdit = !!edit.id;
+  const today = new Date().toISOString().slice(0,10);
+  const catOptions = Object.entries(CAT)
+    .filter(([k])=>k!=='all')
+    .map(([k,v])=>`<option value="${k}" ${((edit.cat||'govt')===k)?'selected':''}>${v.label}</option>`)
+    .join('');
+  const statusOptions = ['draft','published']
+    .map(st=>`<option value="${st}" ${((edit.status||'draft')===st)?'selected':''}>${st==='draft'?'Draft':'Published'}</option>`)
+    .join('');
   return`
   <div class="adm-sec">
-    <h3>➕ Naya Job Post Karein</h3>
-    <div class="afg">
-      <div class="af full"><label>Job Title *</label><input id="_ajt" placeholder="Jaise: Bihar Police Constable Bharti 2026 (21,391 Posts)"/></div>
-      <div class="af"><label>Organisation *</label><input id="_ajo" placeholder="Jaise: Bihar Police"/></div>
-      <div class="af"><label>Category *</label><select id="_ajc"><option value="govt">🏛️ Sarkari</option><option value="railway">🚂 Railway</option><option value="bank">🏦 Bank</option><option value="defence">🪖 Defence/Police</option><option value="private">🏢 Private</option></select></div>
-      <div class="af"><label>Qualification / Education</label><input id="_aje" placeholder="10th Pass / 12th Pass / Graduate"/></div>
-      <div class="af"><label>Location</label><input id="_ajl" placeholder="Bihar / All India / Remote"/></div>
-      <div class="af"><label>Salary Range</label><input id="_ajs" placeholder="₹21,000–₹56,000 ya N/A"/></div>
-      <div class="af"><label>Last Date *</label><input id="_ajd" placeholder="30 April 2026 ya Open"/></div>
-      <div class="af"><label>Apply Link (optional)</label><input id="_ajlk" placeholder="https://..."/></div>
+    <h3>${isEdit?'✏️ Edit Job':'➕ Naya Job Post Karein'}</h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      ${isEdit?`<span class="tpill tp-u">Editing #${edit.id}</span><button class="abtn del" onclick="clearJobEditor()">Cancel Edit</button>`:''}
     </div>
-    <button class="abtn" onclick="addJob()">✅ Job Post Karein</button>
+    <div class="afg">
+      <div class="af full"><label>Job Title *</label><input id="_ajt" value="${esc(edit.title||'')}" placeholder="Jaise: Bihar Police Constable Bharti 2026"/></div>
+      <div class="af"><label>Organisation *</label><input id="_ajo" value="${esc(edit.org||'')}" placeholder="Jaise: Bihar Police"/></div>
+      <div class="af"><label>Category *</label><select id="_ajc">${catOptions}</select></div>
+      <div class="af"><label>Status *</label><select id="_ajs1">${statusOptions}</select></div>
+      <div class="af"><label>Qualification / Education</label><input id="_aje" value="${esc(edit.edu||'')}" placeholder="10th Pass / 12th Pass / Graduate"/></div>
+      <div class="af"><label>Location</label><input id="_ajl" value="${esc(edit.loc||'')}" placeholder="Bihar / All India / Remote"/></div>
+      <div class="af"><label>Salary Range</label><input id="_ajs" value="${esc(edit.sal||'')}" placeholder="₹21,000–₹56,000 ya N/A"/></div>
+      <div class="af"><label>Post Date *</label><input id="_ajpd" type="date" value="${dateVal(edit.post_date||today)}"/></div>
+      <div class="af"><label>Apply Date *</label><input id="_ajad" type="date" value="${dateVal(edit.apply_date||today)}"/></div>
+      <div class="af full"><label>Apply Link (optional)</label><input id="_ajlk" value="${esc(edit.link||'')}" placeholder="https://..."/></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="abtn" onclick="addJob()">${isEdit?'Update Job':'Save Draft'}</button>
+      <button class="abtn sm" onclick="setJobStatusAndSave('published')">Save & Publish</button>
+    </div>
   </div>
   <div class="adm-sec">
     <h3>📋 All Jobs (${S.jobs.length} total)</h3>
-    <table class="atbl"><thead><tr><th>#</th><th>Title</th><th>Category</th><th>Organisation</th><th>Last Date</th><th>Action</th></tr></thead>
+    <div class="table-scroll">
+    <table class="atbl"><thead><tr><th>#</th><th>Title</th><th>Category</th><th>Status</th><th>Post Date</th><th>Apply Date</th><th>Action</th></tr></thead>
     <tbody>${S.jobs.map(j=>`
       <tr>
         <td>${j.id}</td>
-        <td style="max-width:210px;font-size:12px;line-height:1.4">${j.title}</td>
-        <td><span class="jbadge ${(CAT[j.cat]||CAT.govt).cls}">${j.cat}</span></td>
-        <td style="font-size:12px">${j.org}</td>
-        <td style="font-size:12px;color:#ff8a65">${j.deadline}</td>
-        <td><button class="abtn del" onclick="delJob(${j.id})">🗑️ Delete</button></td>
+        <td style="max-width:240px;font-size:12px;line-height:1.4">${j.title}</td>
+        <td><span class="jbadge ${(CAT[j.cat]||CAT.govt).cls}">${(CAT[j.cat]||CAT.govt).label}</span></td>
+        <td><span class="tpill ${(j.status||'published')==='draft'?'tp-u':'tp-i'}">${(j.status||'published').toUpperCase()}</span></td>
+        <td style="font-size:12px">${j.post_date||'—'}</td>
+        <td style="font-size:12px;color:#ff8a65">${j.apply_date||j.deadline||'Open'}</td>
+        <td>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="abtn sm" onclick="editJob(${j.id})">Edit</button>
+            <button class="abtn sm" onclick="toggleJobStatus(${j.id}, '${(j.status||'published')==='draft'?'published':'draft'}')">${(j.status||'published')==='draft'?'Publish':'Draft'}</button>
+            <button class="abtn del" onclick="delJob(${j.id})">Delete</button>
+          </div>
+        </td>
       </tr>`).join('')}
     </tbody></table>
+    </div>
   </div>`;
 }
 
@@ -1182,15 +1282,17 @@ function adminNews(){
 function adminStus(){
   return`<div class="adm-sec">
     <h3>👥 Registered Students (${S.students.length} total)</h3>
-    <table class="atbl"><thead><tr><th>#</th><th>Naam</th><th>Email</th><th>Mobile</th><th>Course</th><th>Joined</th><th>Saved Jobs</th><th>Action</th></tr></thead>
-    <tbody>${S.students.map(s=>`
-      <tr>
-        <td>${s.id}</td><td>${s.name}</td><td style="font-size:12px">${s.email}</td>
-        <td>${s.phone}</td><td>${s.course||'—'}</td><td>${s.joined}</td>
-        <td style="text-align:center">${(s.saved||[]).length}</td>
-        <td><button class="abtn del" onclick="delStudent(${s.id})">🗑️</button></td>
-      </tr>`).join('')}
-    </tbody></table>
+    <div class="table-scroll">
+      <table class="atbl"><thead><tr><th>#</th><th>Naam</th><th>Email</th><th>Mobile</th><th>Course</th><th>Joined</th><th>Saved Jobs</th><th>Action</th></tr></thead>
+      <tbody>${S.students.map(s=>`
+        <tr>
+          <td>${s.id}</td><td>${s.name}</td><td style="font-size:12px">${s.email}</td>
+          <td>${s.phone}</td><td>${s.course||'—'}</td><td>${s.joined}</td>
+          <td style="text-align:center">${(s.saved||[]).length}</td>
+          <td><button class="abtn del" onclick="delStudent(${s.id})">🗑️</button></td>
+        </tr>`).join('')}
+      </tbody></table>
+    </div>
   </div>`;
 }
 
@@ -1198,7 +1300,7 @@ function adminStus(){
 function buildDash(){
   const u=S.user;
   const dt=S.dashTab;
-  const sv=S.jobs.filter(j=>(u.saved||[]).includes(j.id));
+  const sv=S.jobs.filter(j=>(u.saved||[]).includes(j.id) && (j.status||'published')!=='draft');
   return`
 <nav><div class="nv">
   <div class="logo" onclick="S.page='home';rerender()">
@@ -1584,6 +1686,267 @@ function doContact(){
 }
 
 /* ─── INIT ─── */
+function clearJobEditor(){ S.jobEditor = null; rerender(); }
+
+function readJobForm(){
+  const today = new Date().toISOString().slice(0,10);
+  return {
+    title:val('ajt'),
+    org:val('ajo'),
+    cat:val('ajc') || 'govt',
+    edu:val('aje') || 'N/A',
+    loc:val('ajl') || 'N/A',
+    sal:val('ajs') || 'N/A',
+    status:val('ajs1') || 'draft',
+    post_date:val('ajpd') || today,
+    apply_date:val('ajad') || 'Open',
+    deadline:val('ajad') || 'Open',
+    link:val('ajlk'),
+  };
+}
+
+async function saveRemoteUser(user){
+  S.user = normalizeUser(user);
+  LS.set('user', S.user);
+  saveData();
+}
+
+async function addJob(){
+  const draft = readJobForm();
+  if(!draft.title || !draft.org){ toast('Job Title aur Organisation zaroori hain!','er'); return; }
+  try{
+    if(S.jobEditor?.id){
+      await apiFetch(`/api/jobs?id=${encodeURIComponent(S.jobEditor.id)}`,{method:'PUT',body:JSON.stringify(draft)});
+      toast('Job update ho gaya!','ok');
+    } else {
+      await apiFetch('/api/jobs',{method:'POST',body:JSON.stringify(draft)});
+      toast(draft.status==='published' ? 'Job publish ho gaya!' : 'Job draft save ho gaya!','ok');
+    }
+    S.jobEditor = null;
+    await syncRemoteContent({all:true,silent:true});
+    rerender();
+  }catch{
+    if(S.jobEditor?.id){
+      const idx = S.jobs.findIndex(j=>j.id===S.jobEditor.id);
+      if(idx>=0) S.jobs[idx] = {...S.jobs[idx], ...draft, id:S.jobEditor.id};
+      toast('Server unavailable tha, update local cache me hua.','inf');
+    } else {
+      S.jobs.unshift({id:S.nextJob++, ...draft});
+      toast('Server unavailable tha, draft local cache me save hua.','inf');
+    }
+    S.jobEditor = null;
+    saveData();
+    rerender();
+  }
+}
+
+async function setJobStatusAndSave(status){
+  const s = $('_ajs1');
+  if(s) s.value = status;
+  return addJob();
+}
+
+async function toggleJobStatus(id, nextStatus){
+  try{
+    await apiFetch(`/api/jobs?id=${encodeURIComponent(id)}`,{method:'PUT',body:JSON.stringify({status:nextStatus})});
+    await syncRemoteContent({all:true,silent:true});
+    toast(`Job ${nextStatus==='published'?'publish':'draft'} ho gaya!`,'ok');
+    rerender();
+  }catch{
+    const job = S.jobs.find(j=>j.id===id);
+    if(job){ job.status = nextStatus; saveData(); }
+    toast('Server unavailable tha, status local cache me update hua.','inf');
+    rerender();
+  }
+}
+
+function editJob(id){
+  const job = S.jobs.find(j=>j.id===id);
+  if(!job) return;
+  S.jobEditor = {...job};
+  S.adminTab = 'jobs';
+  rerender();
+}
+
+async function delJob(id){
+  if(!confirm('Is job ko delete karein? Yeh action undo nahi hoga.')) return;
+  try{
+    await apiFetch(`/api/jobs?id=${encodeURIComponent(id)}`,{method:'DELETE'});
+    if(S.user?.role==='student' && Array.isArray(S.user.saved)) S.user.saved = S.user.saved.filter(x=>x!==id);
+    await syncRemoteContent({all:true,silent:true});
+    saveData();
+    toast('Job globally delete ho gaya.','inf');
+    rerender();
+  }catch{
+    S.jobs=S.jobs.filter(j=>j.id!==id);
+    if(S.user?.role==='student' && Array.isArray(S.user.saved)) S.user.saved = S.user.saved.filter(x=>x!==id);
+    saveData();
+    toast('Server unavailable tha, delete local cache me hua.','inf');
+    rerender();
+  }
+}
+
+async function addNews(){
+  const tx = ($('_ant')||{}).value?.trim();
+  const ty = ($('_any')||{}).value||'new';
+  if(!tx){ toast('News text daalen!','er'); return }
+  try{
+    await apiFetch('/api/news',{method:'POST',body:JSON.stringify({text:tx,type:ty})});
+    await syncRemoteContent({all:true,silent:true});
+    toast('News ticker globally update ho gaya!','ok');
+    rerender();
+  }catch{
+    S.news.push({id:S.nextNews++, text:tx, type:ty});
+    saveData();
+    toast('Server unavailable tha, news local cache me save hui.','inf');
+    rerender();
+  }
+}
+
+async function delNews(id){
+  try{
+    await apiFetch(`/api/news?id=${encodeURIComponent(id)}`,{method:'DELETE'});
+    await syncRemoteContent({all:true,silent:true});
+    toast('News globally delete ho gaya.','inf');
+    rerender();
+  }catch{
+    S.news=S.news.filter(n=>n.id!==id);
+    saveData();
+    toast('Server unavailable tha, news local cache se delete hui.','inf');
+    rerender();
+  }
+}
+
+async function doLogin(){
+  const em = ($('_lem')||{}).value?.trim().toLowerCase();
+  const pw = ($('_lpw')||{}).value?.trim();
+  if(!em||!pw){ setMsg('Email/Mobile aur password dono zaroori hain.'); return }
+  try{
+    const user = await apiFetch('/api/auth/login',{method:'POST',body:JSON.stringify({identifier:em,password:pw})});
+    await saveRemoteUser(user);
+    S.showAuth=false;
+    S.page = S.user.role==='admin' ? 'admin' : 'dash';
+    await syncRemoteContent({all:S.user.role==='admin',silent:true});
+    toast(S.user.role==='admin' ? '👑 Admin login successful!' : `Welcome back, ${S.user.name}! 🎉`,'ok');
+    rerender();
+  }catch(err){
+    const st=(S.students||[]).find(s=>(String(s.email||'').toLowerCase()===em||String(s.phone||s.mobile||'')===em) && (s.password===pw || !s.password));
+    if(st){
+      await saveRemoteUser({...st,role:'student'});
+      S.showAuth=false; S.page='dash';
+      toast(`Welcome back, ${st.name}! 🎉`,'ok');
+      rerender();
+      return;
+    }
+    setMsg(err?.message || 'Email/Mobile ya password galat hai. Dobara try karein.');
+  }
+}
+
+async function doRegister(){
+  const nm = ($('_rnm')||{}).value?.trim();
+  const em = ($('_rem')||{}).value?.trim().toLowerCase();
+  const ph = ($('_rph')||{}).value?.trim();
+  const cr = ($('_rcr')||{}).value?.trim();
+  const pw = ($('_rpw')||{}).value?.trim();
+  if(!nm||!em||!ph||!pw){ setMsg('Naam, Email, Mobile aur Password zaroori hain.'); return }
+  if(!/^\d{10}$/.test(ph)){ setMsg('Sahi 10 digit mobile number daalen.'); return }
+  if(pw.length<6){ setMsg('Password minimum 6 characters ka hona chahiye.'); return }
+  if(!/\S+@\S+\.\S+/.test(em)){ setMsg('Valid email address daalen.'); return }
+  try{
+    const user = await apiFetch('/api/auth/register',{method:'POST',body:JSON.stringify({name:nm,email:em,mobile:ph,course:cr,password:pw})});
+    await saveRemoteUser(user);
+    S.showAuth=false; S.page='dash'; S.dashTab='profile';
+    await syncRemoteContent({all:false,silent:true});
+    toast(`Welcome, ${nm}! Account ban gaya 🎉`,'ok');
+    rerender();
+  }catch(err){
+    const duplicateEmail = (S.students||[]).some(s=>String(s.email||'').toLowerCase()===em);
+    const duplicateMobile = (S.students||[]).some(s=>String(s.phone||s.mobile||'')===ph);
+    if(duplicateEmail){ setMsg('Is email se pehle se account hai. Login karein.'); return }
+    if(duplicateMobile){ setMsg('Is mobile number se pehle se account hai. Login karein.'); return }
+    const ns={id:S.nextStu++,name:nm,email:em,mobile:ph,phone:ph,course:cr,password:pw,
+             joined:new Date().toISOString().slice(0,10),saved:[],saved_job_ids:[],role:'student'};
+    S.students.push(ns);
+    await saveRemoteUser(ns);
+    S.showAuth=false; S.page='dash'; S.dashTab='profile';
+    saveData();
+    toast(`Welcome, ${nm}! Account ban gaya 🎉`,'ok');
+    rerender();
+  }
+}
+
+async function doSave(id){
+  if(!S.user||S.user.role!=='student'){ toast('Jobs save karne ke liye pehle login karein!','er'); openAuth('login'); return }
+  try{
+    const user = await apiFetch('/api/saved-jobs',{method:'POST',body:JSON.stringify({student_id:S.user.id,job_id:id})});
+    await saveRemoteUser(user);
+    await syncRemoteContent({all:false,silent:true});
+    toast('✅ Job saved! Dashboard → Saved Jobs mein dekhen.','ok');
+    rerender();
+  }catch{
+    const saved = Array.isArray(S.user.saved) ? [...S.user.saved] : [];
+    if(saved.includes(id)){ toast('Ye job pehle se saved hai!','inf'); return }
+    saved.push(id);
+    S.user.saved = saved;
+    LS.set('user', S.user);
+    saveData();
+    toast('✅ Job saved locally. Server connect hone par sync ho jayega.','ok');
+    rerender();
+  }
+}
+
+async function removeSaved(id){
+  if(!S.user){ return; }
+  try{
+    await apiFetch(`/api/saved-jobs?student_id=${encodeURIComponent(S.user.id)}&job_id=${encodeURIComponent(id)}`,{method:'DELETE'});
+    S.user.saved = (S.user.saved||[]).filter(x=>x!==id);
+    LS.set('user', S.user);
+    saveData();
+    toast('Job removed from saved.','inf');
+    rerender();
+  }catch{
+    S.user.saved=(S.user.saved||[]).filter(x=>x!==id);
+    LS.set('user', S.user);
+    saveData();
+    toast('Job removed locally.','inf');
+    rerender();
+  }
+}
+
+async function delStudent(id){
+  if(id===1){toast('Demo student delete nahi ho sakta.','er');return}
+  if(!confirm('Is student ka account delete karein?')) return;
+  try{
+    await apiFetch(`/api/students?id=${encodeURIComponent(id)}`,{method:'DELETE'});
+    await syncRemoteContent({all:true,silent:true});
+    saveData();
+    toast('Student delete ho gaya.','inf');
+    rerender();
+  }catch{
+    S.students=S.students.filter(s=>s.id!==id);
+    saveData();
+    toast('Server unavailable tha, student local cache se delete hua.','inf');
+    rerender();
+  }
+}
+
+function dashAlerts(){return`
+  <div class="ds">
+    <h3>💼 Latest Job Alerts</h3>
+    ${S.jobs.filter(j=>(j.status||'published')!=='draft').map(j=>`
+      <div class="sjitem">
+        <div style="flex:1">
+          <span class="jbadge ${(CAT[j.cat]||CAT.govt).cls}" style="margin-bottom:5px">${(CAT[j.cat]||CAT.govt).label}</span>
+          <div class="sjt" style="margin-top:4px">${j.title}</div>
+          <div class="sjo">${j.org} &nbsp;|&nbsp; ⏰ ${j.apply_date||j.deadline||'Open'}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button class="btn-ap" style="font-size:11.5px;padding:6px 12px" onclick="doApply(${j.id})">Apply</button>
+          <button class="btn-sv" style="font-size:11.5px;padding:6px 10px;${(S.user?.saved||[]).includes(j.id)?'color:var(--or);border-color:var(--bd-o)':''}" onclick="doSave(${j.id})">${(S.user?.saved||[]).includes(j.id)?'✅':'🔖'}</button>
+        </div>
+      </div>`).join('')}
+  </div>`}
+
 async function startApp(){
   rerender();
   await syncRemoteContent({silent:true});
