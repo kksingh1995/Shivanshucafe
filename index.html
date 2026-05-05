@@ -4,11 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shivanshu Cafe – All Online Services Available Here</title>
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#E30000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Shivanshu Cafe">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Shivanshu Cafe">
+<meta name="msapplication-TileColor" content="#E30000">
+<meta name="msapplication-TileImage" content="/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -844,7 +849,7 @@ footer{background:#111;color:rgba(255,255,255,.65);padding:56px 0 26px;}
         <ul>
           <li><a href="tel:+918935897611">📞 +91 8935897611</a></li>
           <li><a href="mailto:shivanshucafe@gmail.com">✉ shivanshucafe@gmail.com</a></li>
-          <li><a>📍 Near Ramji Market, Belaganj, Gaya, Bihar</a></li>
+          <li><a>📍 Near Ramji Market, Belaganj,<br>&nbsp;&nbsp;&nbsp;&nbsp;Gaya, Bihar – 804403</a></li>
         </ul>
         <div style="margin-top:14px;padding:14px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);border-radius:10px;">
           <a href="https://wa.me/918935897611" target="_blank" style="color:#25D366;text-decoration:none;font-weight:700;font-size:13.5px;">💬 Chat on WhatsApp</a>
@@ -965,8 +970,17 @@ function dismissPWA(e){
   document.getElementById('pwa-install-bar').style.display = 'none';
 }
 // Register service worker
+// Register service worker with absolute path
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js').catch(function(){});
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js', {scope: '/'})
+      .then(function(reg){
+        console.log('SW registered:', reg.scope);
+      })
+      .catch(function(err){
+        console.log('SW registration failed:', err);
+      });
+  });
 }
 
 

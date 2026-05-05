@@ -9,11 +9,26 @@ services:
         value: public, max-age=3600
       - path: /sw.js
         name: Cache-Control
-        value: no-cache
+        value: no-cache, no-store, must-revalidate
       - path: /manifest.json
         name: Cache-Control
         value: public, max-age=86400
+      - path: /sw.js
+        name: Service-Worker-Allowed
+        value: /
     routes:
+      - type: rewrite
+        source: /sw.js
+        destination: /sw.js
+      - type: rewrite
+        source: /manifest.json
+        destination: /manifest.json
+      - type: rewrite
+        source: /icon-192.png
+        destination: /icon-192.png
+      - type: rewrite
+        source: /icon-512.png
+        destination: /icon-512.png
       - type: rewrite
         source: /*
         destination: /index.html
