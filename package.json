@@ -1,0 +1,15 @@
+{
+  "name": "shivanshu-cafe",
+  "version": "1.0.0",
+  "description": "Shivanshu Cafe - All Online Services Available Here",
+  "scripts": {
+    "start": "npx serve . -p $PORT",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
