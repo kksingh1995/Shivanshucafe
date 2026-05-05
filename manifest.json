@@ -1,0 +1,22 @@
+{
+  "name": "Shivanshu Cafe \u2013 All Online Services",
+  "short_name": "Shivanshu Cafe",
+  "description": "All Online Services Available Here \u2013 PAN Card, Aadhaar, Print, Lamination",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#E30000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
