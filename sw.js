@@ -1,8 +1,8 @@
 // Shivanshu Cafe Service Worker v2
 const CACHE_NAME = 'shivanshu-cafe-v2';
-const OFFLINE_URL = '/index.html';
+const OFFLINE_URL = 'shivanshucafe.in';
 
-const PRE_CACHE = ['/', '/index.html', '/manifest.json', '/icon-192.png', '/icon-512.png'];
+const PRE_CACHE = ['/', 'shivanshucafe.in', '/manifest.json', '/icon-192.png', '/icon-512.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
